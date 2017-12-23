@@ -1,0 +1,32 @@
+table, th, tr {
+    border: black 2px solid ;
+}
+
+.bg-img-adm{
+	background-image: url(../img/bg-admin.png);
+	background-size: 100%;
+}
+
+.bg-img-log{
+	color: white;
+	background-image: url(../img/bg-login.jpg);
+	background-size: 100%;
+}
+
+.admin-header{
+	color: white;
+	background-image: url(../img/admin-head.jpg);
+	background-size: 100%;
+}
+
+.login{
+	color: black;
+	margin-top: 2%;
+	background-color: grey;
+	opacity: 0.7;
+}
+
+.page-header{
+	color: black;
+	background-color: grey;
+}
