@@ -18,23 +18,23 @@
 	    <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle active" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cervezas</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="/TpBeer/administrador/listarCerveza">Listar</a>
-          <a class="dropdown-item" href="/TpBeer/administrador/altaCerveza">Agregar</a>
-          <a class="dropdown-item" href="/TpBeer/administrador/botonLitrosFechas">Litros Vendidos</a>
+          <a class="dropdown-item" href="../administrador/listarCerveza">Listar</a>
+          <a class="dropdown-item" href="../administrador/altaCerveza">Agregar</a>
+          <a class="dropdown-item" href="../administrador/botonLitrosFechas">Litros Vendidos</a>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle active" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sucursales</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="/TpBeer/administrador/listarSucursales">Listar</a>
-          <a class="dropdown-item" href="/TpBeer/administrador/altaSucursal">Agregar</a>
+          <a class="dropdown-item" href="../administrador/listarSucursales">Listar</a>
+          <a class="dropdown-item" href="../administrador/altaSucursal">Agregar</a>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle active" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Envases</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="/TpBeer/administrador/listarEnvases">Listar</a>
-          <a class="dropdown-item" href="/TpBeer/administrador/altaEnvase">Agregar</a>
+          <a class="dropdown-item" href="../administrador/listarEnvases">Listar</a>
+          <a class="dropdown-item" href="../administrador/altaEnvase">Agregar</a>
         </div>
       </li>
       <li class="nav-item dropdown">

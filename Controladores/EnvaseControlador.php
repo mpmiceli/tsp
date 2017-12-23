@@ -2,7 +2,6 @@
 
 use Config\Request;
 use Modelos;
-use DAOs\DAOEnvase;
 use DAOs\BDEnvase;
 use Vistas;
 
@@ -12,7 +11,6 @@ class EnvaseControlador {
 
     public function __construct()
     {
-        //$this->datoEnvase = DAOEnvase::getInstance();
         $this->datoEnvase = BDEnvase::getInstance();
     }
 
@@ -23,7 +21,8 @@ class EnvaseControlador {
 
             mkdir($imageDirectory);
         }
-        
+        //print_r($_FILES);
+        //exit;
 
         if($_FILES and $_FILES['imagen']['size']>0){
             
@@ -45,31 +44,54 @@ class EnvaseControlador {
 
     public function darDeAlta($volumen, $factor, $descripcion)
     {
+        try {            
+            
+            $this->datoEnvase = BDEnvase::getInstance();   
 
-        $this->datoEnvase = BDEnvase::getInstance();   
+            $envase = $this->datoEnvase->buscarPorVolumen($volumen);
+            
+            if ($envase) {
 
-        $env = $this->datoEnvase->buscarXdescripcion($descripcion);
+                if ($envase->getActivo() == 1) {
+                    throw new \Exception('Ese envase ya existe');    
+                } else {
 
-
-        try{
-                if ($env->getDescripcion() == $descripcion) {
-                    throw new \Exception('Ese envase ya existe');
-                }else {
-                    $envase = new Modelos\Envase();
-                    $envase->setVolumen($volumen);
-                    $envase->setFactor($factor);
-                    $envase->setDescripcion($descripcion);
                     $imagen = $this->MoverImagen();
-                    if(!is_null($imagen)){
-                       $envase->setImagen($imagen);
-                    }
-                    $this->datoEnvase->agregar($envase);
-                    header("Location: /TpBeer/administrador/altaEnvase");
+
+                    $this->datoEnvase->modificar(
+                        $envase->getId(),
+                        [
+                            'volumen' => $volumen,
+                            'factor' => $factor,
+                            'descripcion' => $descripcion,
+                            'activo' => 1
+                        ],
+                        $imagen
+                    );
+
+                    header("Location: ../administrador/listarEnvases");
                 }
-            } catch (\Exception $exception) {
-                echo '<script> alert("'.$exception->getMessage().'"); </script>';
-                require_once "Vistas/Administrador.php";
+
+            } else {
+
+                $envase = new Modelos\Envase();
+                $envase->setVolumen($volumen);
+                $envase->setFactor($factor);
+                $envase->setDescripcion($descripcion);
+                $envase->setActivo(1);
+
+                $imagen = $this->MoverImagen();
+                if (!is_null($imagen)){
+                    $envase->setImagen($imagen);
+                }
+
+                $this->datoEnvase->agregar($envase);
+                header("Location: ../administrador/altaEnvase");
             }
+        } catch (\Exception $exception) {
+            echo '<script> alert("'.$exception->getMessage().'"); </script>';
+            require_once "Vistas/Administrador.php";
+        }
     }
 
     public function getListaEnvases()
@@ -89,13 +111,13 @@ class EnvaseControlador {
         $idEnvase = $parametros['id'];
         $archi = $this->MoverImagen();
         $this->datoEnvase->modificar($idEnvase, $parametros, $archi);    
-        header("Location: /TpBeer/administrador/listarEnvases");
+        header("Location: ./administrador/listarEnvases");
     }
 
     public function baja($id)
     {   
         $this->datoEnvase->eliminar($id);
-        header("Location: /TpBeer/administrador/listarEnvases");   
+        header("Location: ../../administrador/listarEnvases");   
     }
 }
 ?>

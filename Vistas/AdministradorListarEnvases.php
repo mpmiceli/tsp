@@ -51,7 +51,7 @@
                         </th>
                         <th>
                             <div class="trans text-center">
-                                <a class="btn btn-danger btn-sm" href="/TpBeer/Envase/baja/<?php echo $envase->getId(); ?>">Eliminar</a>
+                                <a class="btn btn-danger btn-sm" href="../Envase/baja/<?php echo $envase->getId(); ?>">Eliminar</a>
                             </div>
                         </th>
                     </tr>

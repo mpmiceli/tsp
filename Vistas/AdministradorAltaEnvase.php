@@ -5,7 +5,7 @@
     <div class="trans text-center">
         <h5 class="display-6">Cargar envase</h5><br>
     </div>
-    <form action="/TpBeer/Envase/darDeAlta" method="post" enctype="multipart/form-data">
+    <form action="../Envase/darDeAlta" method="post" enctype="multipart/form-data">
         <div class="form-group row">
             <label for="volumen" class="col-sm-4 col-form-label">Volumen</label>
             <div class="col-sm-8">

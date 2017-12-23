@@ -12,8 +12,8 @@ class BDEnvase extends Singleton
     public function agregar($envase)
     {
         $query = "
-            INSERT INTO envases(volumen, factor, descripcion, imagen)
-            VALUES (:volumen, :factor, :descripcion, :imagen)
+            INSERT INTO envases(volumen, factor, descripcion, imagen, activo)
+            VALUES (:volumen, :factor, :descripcion, :imagen, :activo);
         ";
 
         $connection = new Connection();
@@ -25,12 +25,17 @@ class BDEnvase extends Singleton
         $factor = $envase->getFactor();
         $descripcion = $envase->getDescripcion();
         $imagen = $envase->getImagen();
+        if (is_null($imagen)) {
+            $imagen = '';
+        }
+        $activo = $envase->getActivo();
 
         $command->bindParam(':volumen', $volumen);
         $command->bindParam(':factor', $factor);
         $command->bindParam(':descripcion', $descripcion);
         $command->bindParam(':imagen', $imagen);
-        
+        $command->bindParam(':activo', $activo, \PDO::PARAM_INT);
+
         $command->execute();
     }
 
@@ -96,7 +101,6 @@ class BDEnvase extends Singleton
         return $envase;
     }
 
-
     public function buscarXdescripcion($descripcion){
 
         $query = "SELECT * FROM envases WHERE descripcion = :descripcion AND activo = 1;";
@@ -118,11 +122,46 @@ class BDEnvase extends Singleton
 
         return $envase;
     }
+
+    public function buscarPorVolumen($volumen){
+
+        $query = "
+            SELECT *
+            FROM envases
+            WHERE volumen = :volumen;";
+
+        $connection = new Connection();
+        $pdo = $connection->connect();
+        $command = $pdo->prepare($query);
+
+        $command->bindParam(':volumen', $volumen);
+        $command->execute();
+
+        $row = $command->fetch();
+        
+        return $this->cargarModelo($row);
+    }
+
+    protected function cargarModelo($row)
+    {
+        if (!empty($row)) {
+            $envase = new Modelos\Envase();
+            $envase->setId($row['id']);
+            $envase->setVolumen($row['volumen']);
+            $envase->setFactor($row['factor']);
+            $envase->setDescripcion($row['descripcion']);
+            $envase->setActivo($row['activo']);
+
+            return $envase;
+        } else {
+            return null;
+        }
+    }
     
     public function modificar($id, $parametros, $foto){
         $query = "
             UPDATE envases
-            SET volumen = :volumen, factor = :factor, descripcion = :descripcion
+            SET volumen = :volumen, factor = :factor, descripcion = :descripcion, activo = :activo
             WHERE id = :id;";
 
         $connection = new Connection();
@@ -132,12 +171,13 @@ class BDEnvase extends Singleton
         $volumen = $parametros['volumen'];
         $factor = $parametros['factor'];
         $descripcion = $parametros['descripcion'];
+        $activo = $parametros['activo'];
         
-
         $command->bindParam(':id', $id);
         $command->bindParam(':volumen', $volumen);
         $command->bindParam(':factor', $factor);
         $command->bindParam(':descripcion', $descripcion);
+        $command->bindParam(':activo', $activo);
         
         // Aca actualizo la imagen nomas
         if (!is_null($foto)){
