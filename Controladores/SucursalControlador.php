@@ -52,5 +52,10 @@ class SucursalControlador
         $this->datoSucursal->eliminar($id);
         header("Location: /TpBeer/administrador/listarSucursales");   
     }
+
+    public function mapa()
+    {
+        $sucursales = $this->datoSucursal->getLista();
+        require_once 'Vistas/MapaSucursales.php';
+    }
 }
-?>

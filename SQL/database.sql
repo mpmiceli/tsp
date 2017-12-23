@@ -26,6 +26,7 @@ CREATE TABLE `tpbeer`.`sucursales` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `direccion` VARCHAR(100) NOT NULL,
   `numero` int NOT NULL,
+  `activo` INT UNSIGNED NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC)
 );
