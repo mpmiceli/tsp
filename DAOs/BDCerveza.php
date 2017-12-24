@@ -132,12 +132,18 @@ class BDCerveza extends Singleton
     }
 
     public function modificar($id, $parametros, $imagen){
+
+        $miniQueryImagen = '';        
+        if (!empty($imagen)) {
+            $miniQueryImagen = "imagen = :imagen,";
+        }
+
         $query = "
             UPDATE cervezas
             SET nombre = :nombre,
                 descripcion = :descripcion,
                 precio = :precio,
-                imagen = :imagen,
+                ".$miniQueryImagen."
                 activo = :activo
             WHERE id = :id;";
 
@@ -149,17 +155,15 @@ class BDCerveza extends Singleton
         $descripcion = $parametros['descripcion'];
         $precio = $parametros['precio'];
         $activo = $parametros['activo'];
-        if (empty($imagen)) {
-            $imagen = '';
-        }
-
-
+        
         $command->bindParam(':id', $id);
         $command->bindParam(':nombre', $nombre);
         $command->bindParam(':descripcion', $descripcion);
         $command->bindParam(':precio', $precio);
-        $command->bindParam(':imagen', $imagen);
         $command->bindParam(':activo', $activo);
+        if ($imagen) {
+            $command->bindParam(':imagen', $imagen);
+        }
 
         $command->execute();
 
@@ -225,7 +229,6 @@ class BDCerveza extends Singleton
         }
         
         return $lista;
-
     }
 
     public function eliminarEnvases($id_cerveza){

@@ -11,8 +11,6 @@ class ControladorComun {
 
             mkdir($imageDirectory);
         }
-        //print_r($_FILES);
-        //exit;
 
         if($_FILES and $_FILES['imagen']['size']>0){
             

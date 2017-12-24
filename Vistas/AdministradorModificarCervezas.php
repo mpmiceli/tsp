@@ -32,7 +32,14 @@
                 <?php foreach ($envases as $envase) : ?>
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" name="envases[]" value="<?php echo $envase->getId(); ?>">
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                name="envases[]"
+                                value="<?php echo $envase->getId(); ?>"
+                                <?php  if (in_array($envase->getId(), $ids_envases)) : ?>
+                                    checked="checked" <?php endif; ?>
+                            />
                             <?php echo $envase->getDescripcion(); ?>
                         </label>
                     </div>

@@ -31,6 +31,14 @@ class CervezaControlador extends ControladorComun
     {
         $cerveza = $this->buscarCerveza($idCerveza);
         $envases = $this->datoEnvase->getLista();
+
+        $envasesCerveza = $this->datoCerveza->listarEnvases($idCerveza);
+
+        $ids_envases = array();
+        foreach ($envasesCerveza as $envase) {
+            array_push($ids_envases, $envase->getId());
+        }
+
         require_once 'Vistas/Administrador.php';
         require_once 'Vistas/AdministradorModificarCervezas.php';  
     }
@@ -130,7 +138,7 @@ class CervezaControlador extends ControladorComun
         $request = new Request();
         $parametros = $request->getParametros();   
         $idCerveza = $parametros['id'];
-        
+        $parametros['activo'] = 1;
         $archi = $this->MoverImagen();
 
         $this->datoCerveza->modificar($idCerveza, $parametros, $archi);
