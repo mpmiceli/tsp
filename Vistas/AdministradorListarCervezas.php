@@ -27,7 +27,7 @@
         </thead>
         <thead>
         <tbody style="color: black;">
-            <?php foreach ($datos->getListaCervezas() as $cerveza) : ?>
+            <?php foreach ($this->getListaCervezas() as $cerveza) : ?>
                 <tr class="table-active">
                     <th>   
                         <?php echo $cerveza->getID(); ?>
@@ -55,12 +55,12 @@
                     </th> 
                     <th>
                         <div class="trans text-center">
-                            <a class="btn btn-warning btn-sm" href="modificarCerveza/<?php echo $cerveza->getId(); ?>">Modificar</a>
+                            <a class="btn btn-warning btn-sm" href="modificar/<?php echo $cerveza->getId(); ?>">Modificar</a>
                         </div>
                     </th>
                     <th>
                         <div class="trans text-center">
-                            <a class="btn btn-danger btn-sm" href="/TpBeer/Cerveza/baja/<?php echo $cerveza->getId(); ?>">Eliminar</a>
+                            <a class="btn btn-danger btn-sm" href="../cerveza/baja/<?php echo $cerveza->getId(); ?>">Eliminar</a>
                         </div>
                     </th>
                 </tr>

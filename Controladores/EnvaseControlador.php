@@ -1,4 +1,6 @@
-<?php namespace Controladores;
+<?php
+
+namespace Controladores;
 
 use Config\Request;
 use Modelos;

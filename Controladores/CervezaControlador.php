@@ -7,80 +7,95 @@ use Modelos;
 use Controladores;
 use DAOs\DAOCerveza;
 use DAOs\BDCerveza;
+use DAOs\BDEnvase;
 use Vistas;
 
-class CervezaControlador
+class CervezaControlador extends ControladorComun
 {
     private $datoCerveza;
+    private $datoEnvase;
 
     public function __construct()
     {
-        //$this->datoCerveza = DAOCerveza::getInstance();
-
-        //aca en lugar del dao tengo q poner lo de la base de datos
-        //y es lo que tengo que comentar
         $this->datoCerveza = BDCerveza::getInstance();
-
+        $this->datoEnvase = BDEnvase::getInstance();
     }
 
-    public function MoverImagen(){
-        $imageDirectory = 'images/';
-
-        if(!file_exists($imageDirectory)){
-
-            mkdir($imageDirectory);
-        }
-        //print_r($_FILES);
-        //exit;
-
-        if($_FILES and $_FILES['imagen']['size']>0){
-            
-            if((isset($_FILES['imagen'])) && ($_FILES['imagen']['name'] != '')){
-                
-                $file = $imageDirectory . basename($_FILES['imagen']['name']);
-                
-                if(!file_exists($file)){
-                    
-                    move_uploaded_file($_FILES["imagen"]["tmp_name"], $file);
-                }
-
-                return $file;
-            }
-        }else{
-            return null;
-        }
-    }
-
-    public function Alta($nombre, $descripcion, $precio, $envases)
+    public function listar()
     {
-        $this->datoCerveza = BDCerveza::getInstance();
-        
-        $cerve = $this->datoCerveza->buscarXnombre($nombre);
-         
-        try{            
-            if ($cerve->getNombre() == $nombre) {
-                throw new \Exception('Esa cerveza ya existe');
-            } else {
+        require_once 'Vistas/Administrador.php';
+        require_once 'Vistas/AdministradorListarCervezas.php';    
+    }
 
+    public function modificar($idCerveza)
+    {
+        $cerveza = $this->buscarCerveza($idCerveza);
+        $envases = $this->datoEnvase->getLista();
+        require_once 'Vistas/Administrador.php';
+        require_once 'Vistas/AdministradorModificarCervezas.php';  
+    }
+
+    public function alta()
+    {
+        $datos = new Controladores\EnvaseControlador();
+        $envases = $datos->getListaEnvases();
+        require_once 'Vistas/Administrador.php';
+        require_once 'Vistas/AdministradorAltaCerveza.php';  
+    }
+
+    public function darDeAlta($nombre, $descripcion, $precio, $envases)
+    {
+        try {
+
+            $cerveza = $this->datoCerveza->buscarXnombre($nombre);
+
+            if ($cerveza->getNombre() == $nombre) {
+
+                if ($cerveza->getActivo() == 1) {
+                    throw new \Exception('Esa cerveza ya existe');
+                } else {
+
+                    $imagen = $this->MoverImagen();
+
+                    $this->datoCerveza->modificar(
+                        $cerveza->getId(),
+                        [
+                            'nombre' => $cerveza->getNombre(),
+                            'descripcion' => $descripcion,
+                            'precio' => $precio,
+                            'activo' => 1,
+                            'envases' => $envases
+                        ],
+                        $imagen
+                    );
+
+                    header("Location: ../cerveza/listar");
+                }             
+
+            } else {
                 $cerveza = new Modelos\Cerveza();
+                
                 $cerveza->setNombre($nombre);
                 $cerveza->setDescripcion($descripcion);
                 $cerveza->setPrecio($precio);
+                $cerveza->setActivo(1);
 
                 $imagen = $this->MoverImagen();
                 if(!is_null($imagen)){
                     $cerveza->setImagen($imagen);
                 }
-                
+
                 $envasesC = array();
-                foreach ($envases as $envase) {
-                    $datos = new Controladores\EnvaseControlador();
-                    $dato = $datos->buscarEnvase($envase);
+                foreach ($envases as $idEnvase) {
+                    $dato = $this->datoEnvase->buscar($idEnvase);
                     array_push($envasesC, $dato);
                 }
+                
                 $cerveza->setEnvases($envasesC);
+
                 $this->datoCerveza->agregar($cerveza);
-                header("Location: /TpBeer/administrador/altaCerveza");
+                
+                header("Location: ../cerveza/listar");
             }
 
         } catch (\Exception $exception) {
@@ -92,7 +107,7 @@ class CervezaControlador
     public function baja($id)
     {   
         $this->datoCerveza->eliminar($id);
-        header("Location: /TpBeer/administrador/listarCerveza");
+        header("Location: ../../cerveza/listar");
     }
 
     public function getListaCervezas()
@@ -118,7 +133,7 @@ class CervezaControlador
         
         $archi = $this->MoverImagen();
 
-        $this->datoCerveza->modificar($idCerveza, $parametros, $archi);    
-        header("Location: /TpBeer/administrador/listarCerveza");
+        $this->datoCerveza->modificar($idCerveza, $parametros, $archi);
+        header("Location: ../cerveza/listar");
     }
 }

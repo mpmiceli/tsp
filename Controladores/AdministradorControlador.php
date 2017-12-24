@@ -14,30 +14,9 @@ class AdministradorControlador
 
     ///////////CERVEZAS////////////////
 
-    public function listarCerveza()
-    {
-        $datos = new Controladores\CervezaControlador();
-        require_once('Vistas/Administrador.php');
-        require_once('Vistas/AdministradorListarCervezas.php');    
-    }
+    
 
-    public function altaCerveza()
-    {
-        $datos = new Controladores\EnvaseControlador();
-        $envases = $datos->getListaEnvases();
-        require_once 'Vistas/Administrador.php';
-        require_once 'Vistas/AdministradorAltaCerveza.php';  
-    }
-
-    public function modificarCerveza($idCerveza)
-    {
-        $datos = new Controladores\CervezaControlador();
-        $cerveza = $datos->buscarCerveza($idCerveza);
-        $datosEnvases = new Controladores\EnvaseControlador();
-        $envases = $datosEnvases->getListaEnvases();
-        require_once('Vistas/Administrador.php');
-        require_once 'Vistas/AdministradorModificarCervezas.php';  
-    }
+    
 
     public function botonLitrosFechas(){
         require_once 'Vistas/Administrador.php';

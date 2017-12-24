@@ -12,8 +12,8 @@ class BDCerveza extends Singleton
     public function agregar($cerveza)
     {
         $query = "
-            INSERT INTO cervezas(nombre, descripcion, precio, imagen)
-            VALUES (:nombre, :descripcion, :precio, :imagen);
+            INSERT INTO cervezas(nombre, descripcion, precio, imagen, activo)
+            VALUES (:nombre, :descripcion, :precio, :imagen, :activo);
         ";
 
         $connection = new Connection();
@@ -25,11 +25,16 @@ class BDCerveza extends Singleton
         $descripcion = $cerveza->getDescripcion();
         $precio = $cerveza->getPrecio();
         $imagen = $cerveza->getImagen();
+        if (empty($imagen)) {
+            $imagen = '';
+        }
+        $activo = $cerveza->getActivo();
 
         $command->bindParam(':nombre', $nombre);
         $command->bindParam(':descripcion', $descripcion);
         $command->bindParam(':precio', $precio);
         $command->bindParam(':imagen', $imagen);
+        $command->bindParam(':activo', $activo);
         
         $command->execute();
 
@@ -105,7 +110,7 @@ class BDCerveza extends Singleton
 
     public function buscarXnombre($nombre){
 
-        $query = "SELECT * FROM cervezas WHERE nombre = :nombre AND activo = 1;";
+        $query = "SELECT * FROM cervezas WHERE nombre = :nombre;";
 
         $connection = new Connection();
         $pdo = $connection->connect();
@@ -126,10 +131,14 @@ class BDCerveza extends Singleton
         return $cerveza;
     }
 
-    public function modificar($id, $parametros, $foto){
+    public function modificar($id, $parametros, $imagen){
         $query = "
             UPDATE cervezas
-            SET nombre = :nombre, descripcion = :descripcion, precio = :precio
+            SET nombre = :nombre,
+                descripcion = :descripcion,
+                precio = :precio,
+                imagen = :imagen,
+                activo = :activo
             WHERE id = :id;";
 
         $connection = new Connection();
@@ -139,21 +148,20 @@ class BDCerveza extends Singleton
         $nombre = $parametros['nombre'];
         $descripcion = $parametros['descripcion'];
         $precio = $parametros['precio'];
+        $activo = $parametros['activo'];
+        if (empty($imagen)) {
+            $imagen = '';
+        }
+
 
         $command->bindParam(':id', $id);
         $command->bindParam(':nombre', $nombre);
         $command->bindParam(':descripcion', $descripcion);
         $command->bindParam(':precio', $precio);
-        $command->execute();
+        $command->bindParam(':imagen', $imagen);
+        $command->bindParam(':activo', $activo);
 
-        // Aca actualizo la imagen nomas
-        if (!is_null($foto)){
-            $query = "UPDATE cervezas SET imagen = :imagen WHERE id = :id;";
-            $command = $pdo->prepare($query);
-            $command->bindParam(':id', $id);
-            $command->bindParam(':imagen', $foto);
-            $command->execute();
-        }
+        $command->execute();
 
         $envases = $parametros['envases'];
         $envasesC = array();

@@ -18,8 +18,8 @@
 	    <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle active" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cervezas</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="../administrador/listarCerveza">Listar</a>
-          <a class="dropdown-item" href="../administrador/altaCerveza">Agregar</a>
+          <a class="dropdown-item" href="../cerveza/listar">Listar</a>
+          <a class="dropdown-item" href="../cerveza/alta">Agregar</a>
           <a class="dropdown-item" href="../administrador/botonLitrosFechas">Litros Vendidos</a>
         </div>
       </li>

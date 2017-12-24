@@ -5,7 +5,7 @@
 	<div class="trans text-center">
 		<h5 class="display-6">Cargar cerveza</h5><br>
 	</div>
-	<form action="/TpBeer/Cerveza/alta" method="post" enctype="multipart/form-data">
+	<form action="../cerveza/darDeAlta" method="post" enctype="multipart/form-data">
 		<div class="form-group row">
 			<label for="nombre" class="col-sm-4 col-form-label">Nombre</label>
 			<div class="col-sm-8">
