@@ -1,7 +1,7 @@
 <center>
 <div class="conteiner bg-dark col-md-8 text-white" style="opacity: 0.9; margin-top: 40px; color: black">
 	<h3 class="form-signin-heading text-center">Registro</h3><br>
-	<form action="/TpBeer/Usuario/guardarCambios" method="post">
+	<form action="../../usuario/guardarCambios" method="post">
 		<input type="hidden" name="id" value="<?php echo $usuarioM->getId(); ?>" >
 		<div class="form-row">
 			<div class="form-group col-md-6">

@@ -1,7 +1,7 @@
 <center>
 <div class="conteiner bg-dark col-md-8 text-white" style="opacity: 0.9; margin-top: 40px; color: black">
 	<h3 class="form-signin-heading text-center">Registro</h3><br>
-	<form action="/TpBeer/Usuario/darDeAlta" method="post">
+	<form action="../usuario/darDeAlta" method="post">
 		<div class="form-row">
 			<div class="form-group col-md-6">
 		        <label for="nombre">Nombre</label>

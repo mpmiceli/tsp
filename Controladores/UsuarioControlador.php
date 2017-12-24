@@ -13,9 +13,28 @@ class UsuarioControlador {
 
     public function __construct()
     {
-        //$this->datoUsuario = DAOUsuario::getInstance();
         $this->datoUsuario = BDUsuario::getInstance();
     }
+
+    public function listar()
+    {
+        require_once('Vistas/Administrador.php');
+        require_once('Vistas/AdministradorListarUsuarios.php');    
+    }
+
+    public function alta()
+    {
+        require_once 'Vistas/Administrador.php';
+        require_once 'Vistas/AdministradorAltaUsuario.php';  
+    }
+
+    public function modificar($idUsuario)
+    {
+        $usuarioM = $this->datoUsuario->buscar($idUsuario);
+        require_once('Vistas/Administrador.php');
+        require_once 'Vistas/AdministradorModificarUsuarios.php';  
+    }
+
 
     public function darDeAlta($nombre, $apellido, $domicilio, $telefono, $email, $username, $contrasenia1, $contrasenia2)
     {
@@ -76,13 +95,13 @@ class UsuarioControlador {
         $parametros = $request->getParametros();   
         $idUsuario = $parametros['id'];
         $this->datoUsuario->modificar($idUsuario, $parametros);    
-        header("Location: /TpBeer/administrador/listarUsuarios");
+        header("Location: ../usuario/listar");
     }
 
     public function baja($id)
     {   
         $this->datoUsuario->eliminar($id);
-        header("Location: /TpBeer/administrador/listarUsuarios");    
+        header("Location: ../../usuario/listar");    
     }
 
     public function logOut(){

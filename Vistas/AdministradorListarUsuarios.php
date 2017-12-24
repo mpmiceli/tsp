@@ -26,7 +26,7 @@
             </thead>
             <thead>
             <tbody style="color: black;">
-                <?php foreach ($datos->getListaUsuarios() as $usuario) : ?>
+                <?php foreach ($this->getListaUsuarios() as $usuario) : ?>
                     <tr class="table-active">
                         <th>   
                             <?php echo $usuario->getNombre(); ?>
@@ -48,12 +48,12 @@
                         </th> 
                         <th>
                             <div class="trans text-center">
-                                <a class="btn btn-warning btn-sm" href="modificarUsuario/<?php echo $usuario->getId(); ?>">Modificar</a>
+                                <a class="btn btn-warning btn-sm" href="../usuario/modificar/<?php echo $usuario->getId(); ?>">Modificar</a>
                             </div>
                         </th>
                         <th>
                             <div class="trans text-center">
-                                <a class="btn btn-danger btn-sm" href="/TpBeer/Usuario/baja/<?php echo $usuario->getId(); ?>">Eliminar</a>
+                                <a class="btn btn-danger btn-sm" href="../usuario/baja/<?php echo $usuario->getId(); ?>">Eliminar</a>
                             </div>
                         </th>
                     </tr>

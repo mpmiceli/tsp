@@ -40,8 +40,8 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle active" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Clientes</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="/TpBeer/administrador/listarUsuarios">Listar</a>
-          <a class="dropdown-item" href="/TpBeer/administrador/altaUsuario">Agregar</a>
+          <a class="dropdown-item" href="../usuario/listar">Listar</a>
+          <a class="dropdown-item" href="../usuario/alta">Agregar</a>
         </div>
       </li>
     </ul>
