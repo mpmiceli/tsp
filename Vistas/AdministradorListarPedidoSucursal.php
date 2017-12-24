@@ -14,45 +14,36 @@
 
         <label><b>Fecha Entrega:</b> </label>
         <?php echo $pedido->getFechaEntrega(); ?>
-        
         <br>
+
+        <?php $estados = array('Solicitado', 'Procesado', 'Enviado', 'Finalizado'); ?>
         
         <label><b>Estado:</b> </label>
-        <?php if ($pedido->getEstado() == 0) { ?>
-            Solicitado
-        <?php }; ?>
-        <?php if ($pedido->getEstado() == 1) { ?>
-            Precesado
-        <?php }; ?>
-        <?php if ($pedido->getEstado() == 2) { ?>
-            Enviado
-        <?php }; ?>
-        <?php if ($pedido->getEstado() == 3) { ?>
-            Finalizado
-        <?php }; ?>
-
+        <?php echo $estados[$pedido->getEstado()]; ?>
         <br>
 
         <form action="../pedido/modificarEstadoSucursal" method="post">
+            <input type="hidden" name="id" value="<?php echo $pedido->getId(); ?>" >
+            <input type="hidden" name="sucursal" value="<?php echo $sucursal->getId(); ?>" >
+            <label for="estado"><strong><h5>Cambiar estado: </h5></strong></label>
 
-                    <input type="hidden" name="id" value="<?php echo $pedido->getId(); ?>" >
-                    <input type="hidden" name="sucursal" value="<?php echo $sucursal->getId(); ?>" >
+            <?php
+                foreach($estados as $id => $estado) : ?>
+                    <input
+                        type="radio"
+                        name="estado"
+                        value="<?php echo $id; ?>"
+                        <?php if ($id == $pedido->getEstado()) : ?>
+                            checked="checked"
+                        <?php endif; ?>
 
-                    <label for="estado"><strong><h5>Cambiar estado: </h5></strong></label>
-                
-                    <input type="radio" name="estado" id="solicitado" value="0" checked="checked">
-                    <label for="solicitado">Solicitado</label>
-
-                    <input type="radio" name="estado" id="procesado" value="1">
-                    <label for="procesado">Procesado</label>
-
-                    <input type="radio" name="estado" id="enviado" value="2">
-                    <label for="enviado">Enviado</label>
-
-                    <input type="radio" name="estado" id="finalizado" value="3">
-                    <label for="finalizado">Finalizado</label>
-
-                    <input type="submit" value="Cambiar" >
+                        <?php if ($id < $pedido->getEstado()) : ?>
+                            disabled="disabled"
+                        <?php endif; ?>
+                    />
+                    <label for="<?php echo $estado; ?>"><?php echo $estado; ?></label>
+            <?php endforeach; ?>
+            <input type="submit" value="Cambiar" >
         </form>
 
 
@@ -62,9 +53,7 @@
         <?php else : ?>
             Envio a domicilio
         <?php endif; ?>
-
         <br>
-
     </center>
     </th></tr></table>
     <div class="container">
