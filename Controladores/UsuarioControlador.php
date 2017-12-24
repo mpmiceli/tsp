@@ -108,6 +108,6 @@ class UsuarioControlador {
     public function logOut(){
         unset($_SESSION['USUARIO-LOGUEADO']);
         unset($_SESSION['PEDIDO']);
-        header("Location: ".HOST."/login/index");
+        header("Location: ".HOST);
     }
 }

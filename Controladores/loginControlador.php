@@ -6,7 +6,16 @@
 	class LoginControlador{
 
 		public function index(){
-			require_once "Vistas/Login.php";
+			$usuario = $this->getUsuarioLogueado();
+			if (is_null($usuario)) {
+				require_once "Vistas/Login.php";	
+			} else {
+				if ($usuario->getAdmin() == 1) {
+					header("Location: ".HOST."/administrador/menu");
+				} else {
+					header("Location: ".HOST."/cliente/menu");
+				}
+			}
 		}
 
 		public function procesarLogin($usuario, $contrasenia){
