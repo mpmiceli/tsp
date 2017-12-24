@@ -59,7 +59,7 @@ class PedidoControlador extends ControladorComun {
         }
         
         $pedido->setMontoFinal($montoParcial);
-        header("Location: ../cliente/listarCerveza");
+        header("Location: ".HOST."/cliente/listarCerveza");
     }
 
     public function eliminarLinea($pos = 0){
@@ -77,7 +77,7 @@ class PedidoControlador extends ControladorComun {
             $montoParcial = $montoParcial + $lineaP->getPrecio();
         }
         $pedido->setMontoFinal($montoParcial);
-        header("Location: ../../cliente/mostrarCarrito");
+        header("Location: ".HOST."/cliente/mostrarCarrito");
     }
 
     public function finalizarPedido($fecha_entrega, $tipo_entrega, $dato_entrega){
@@ -120,7 +120,7 @@ class PedidoControlador extends ControladorComun {
 
             $this->vaciarCarrito();
 
-            header("Location: ../cliente/menu");
+            header("Location: ".HOST."/cliente/menu");
         
         } catch(\Exception $exception) {
             echo '<script> alert("'.$exception->getMessage().'"); </script>';
@@ -165,7 +165,7 @@ class PedidoControlador extends ControladorComun {
 
     public function modificarEstadoUsuario($id, $usuario, $estado = 0){
         $this->datoPedido->modificarEstado($estado, $id);
-        header("Location: /TpBeer/pedido/listarPedidosUsuario/" . $usuario); 
+        header("Location: ".HOST."/pedido/listarPedidosUsuario/" . $usuario); 
     }
 
     public function modificarEstadoSucursal($id, $id_sucursal, $estado = 0){
@@ -175,17 +175,17 @@ class PedidoControlador extends ControladorComun {
 
         $this->datoPedido->modificarEstado($estado, $id);
         
-        header("Location: ../pedido/listar"); 
+        header("Location: ".HOST."/pedido/listar"); 
     }
 
     public function modificarEstadoFecha($id, $fecha, $estado = 0){
         $this->datoPedido->modificarEstado($estado, $id);
-        header("Location: /TpBeer/pedido/listarPedidosFechas/" . $fecha); 
+        header("Location: ".HOST."/pedido/listarPedidosFechas/" . $fecha); 
     }
 
     public function eliminarPedido($id){
         $this->datoPedido->eliminar($id);
-        header("Location: /TpBeer/administrador/listarPedidos"); 
+        header("Location: ".HOST."/administrador/listarPedidos"); 
     }
 
     protected function vaciarCarrito(){

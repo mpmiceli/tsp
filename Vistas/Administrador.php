@@ -18,41 +18,41 @@
 	    <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle active" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cervezas</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="../cerveza/listar">Listar</a>
-          <a class="dropdown-item" href="../cerveza/alta">Agregar</a>
-          <a class="dropdown-item" href="../administrador/botonLitrosFechas">Litros Vendidos</a>
+          <a class="dropdown-item" href="<?php echo HOST; ?>/cerveza/listar">Listar</a>
+          <a class="dropdown-item" href="<?php echo HOST; ?>/cerveza/alta">Agregar</a>
+          <a class="dropdown-item" href="<?php echo HOST; ?>/administrador/botonLitrosFechas">Litros Vendidos</a>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle active" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sucursales</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="../sucursal/listar">Listar</a>
-          <a class="dropdown-item" href="../sucursal/alta">Agregar</a>
+          <a class="dropdown-item" href="<?php echo HOST; ?>/sucursal/listar">Listar</a>
+          <a class="dropdown-item" href="<?php echo HOST; ?>/sucursal/alta">Agregar</a>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle active" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Envases</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="../envase/listar">Listar</a>
-          <a class="dropdown-item" href="../envase/alta">Agregar</a>
+          <a class="dropdown-item" href="<?php echo HOST; ?>/envase/listar">Listar</a>
+          <a class="dropdown-item" href="<?php echo HOST; ?>/envase/alta">Agregar</a>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle active" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Clientes</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="../usuario/listar">Listar</a>
-          <a class="dropdown-item" href="../usuario/alta">Agregar</a>
+          <a class="dropdown-item" href="<?php echo HOST; ?>/usuario/listar">Listar</a>
+          <a class="dropdown-item" href="<?php echo HOST; ?>/usuario/alta">Agregar</a>
         </div>
       </li>
     </ul>
     <ul class="navbar-nav">
       <li class="nav-item  float-right">
-        <a class="nav-link active" href="../pedido/listar">Pedidos<span class="sr-only">(current)</span></a>
+        <a class="nav-link active" href="<?php echo HOST; ?>/pedido/listar">Pedidos<span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <ul class="navbar-nav">
       <li class="nav-item  float-right">
-        <a class="nav-link active" href="../usuario/logout">LogOut<span class="sr-only">(current)</span></a>
+        <a class="nav-link active" href="<?php echo HOST; ?>/usuario/logout">LogOut<span class="sr-only">(current)</span></a>
       </li>
     </ul>
   </div>

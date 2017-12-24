@@ -76,8 +76,8 @@ class CervezaControlador extends ControladorComun
                         ],
                         $imagen
                     );
-
-                    header("Location: ../cerveza/listar");
+                    
+                    header("Location: ".HOST."/cerveza/listar");
                 }             
 
             } else {
@@ -103,7 +103,7 @@ class CervezaControlador extends ControladorComun
 
                 $this->datoCerveza->agregar($cerveza);
                 
-                header("Location: ../cerveza/listar");
+                header("Location: ".HOST."/cerveza/listar");
             }
 
         } catch (\Exception $exception) {
@@ -115,7 +115,7 @@ class CervezaControlador extends ControladorComun
     public function baja($id)
     {   
         $this->datoCerveza->eliminar($id);
-        header("Location: ../../cerveza/listar");
+        header("Location: ".HOST."/cerveza/listar");
     }
 
     public function getListaCervezas()
@@ -142,6 +142,6 @@ class CervezaControlador extends ControladorComun
         $archi = $this->MoverImagen();
 
         $this->datoCerveza->modificar($idCerveza, $parametros, $archi);
-        header("Location: ../cerveza/listar");
+        header("Location: ".HOST."/cerveza/listar");
     }
 }

@@ -13,20 +13,20 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="../cliente/listarCerveza">Cervezas</a>
-  <a class="navbar-brand" href="../cliente/listarSucursales">Sucursales</a>
-  <a class="navbar-brand" href="../cliente/listarPedidos">Pedidos</a>
+  <a class="navbar-brand" href="<?php echo HOST; ?>/cliente/listarCerveza">Cervezas</a>
+  <a class="navbar-brand" href="<?php echo HOST; ?>/cliente/listarSucursales">Sucursales</a>
+  <a class="navbar-brand" href="<?php echo HOST; ?>/cliente/listarPedidos">Pedidos</a>
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
     </ul>
     <ul class="navbar-nav">
       <li class="nav-item  float-left">
-        <a class="nav-link active" href="../cliente/mostrarCarrito">Carrito<span class="sr-only">(current)</span></a>
+        <a class="nav-link active" href="<?php echo HOST; ?>/cliente/mostrarCarrito">Carrito<span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <ul class="navbar-nav">
       <li class="nav-item  float-left">
-        <a class="nav-link active" href="../Usuario/LogOut">LogOut<span class="sr-only">(current)</span></a>
+        <a class="nav-link active" href="<?php echo HOST; ?>/usuario/logout">LogOut<span class="sr-only">(current)</span></a>
       </li>
     </ul>
   </div>

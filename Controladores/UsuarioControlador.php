@@ -64,9 +64,9 @@ class UsuarioControlador {
             $this->datoUsuario->agregar($usuario);
 
             if ($usuario != null && $usuario->getAdmin() == 1) {
-                header("Location: ../administrador/altaUsuario");
+                header("Location: ".HOST."/administrador/altaUsuario");
             } else {
-                header("Location: ../login/index");
+                header("Location: ".HOST."/login/index");
             }
 
         } catch (\Exception $exception) {
@@ -96,18 +96,18 @@ class UsuarioControlador {
         $parametros = $request->getParametros();   
         $idUsuario = $parametros['id'];
         $this->datoUsuario->modificar($idUsuario, $parametros);    
-        header("Location: ../usuario/listar");
+        header("Location: ".HOST."/usuario/listar");
     }
 
     public function baja($id)
     {   
         $this->datoUsuario->eliminar($id);
-        header("Location: ../../usuario/listar");    
+        header("Location: ".HOST."/usuario/listar");    
     }
 
     public function logOut(){
         unset($_SESSION['USUARIO-LOGUEADO']);
         unset($_SESSION['PEDIDO']);
-        header("Location: ../Login/index");
+        header("Location: ".HOST."/login/index");
     }
 }

@@ -4,3 +4,4 @@
 	define('DB_NAME', 'tpbeer');
 	define('DB_USER', 'root');
 	define('DB_PASS', '');
+    define('HOST', 'http://localhost/tsp');

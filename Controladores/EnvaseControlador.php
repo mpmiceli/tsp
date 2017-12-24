@@ -53,7 +53,7 @@ class EnvaseControlador extends ControladorComun {
                         $imagen
                     );
 
-                    header("Location: ../envase/listar");
+                    header("Location: ".HOST."/envase/listar");
                 }
 
             } else {
@@ -70,7 +70,7 @@ class EnvaseControlador extends ControladorComun {
                 }
 
                 $this->datoEnvase->agregar($envase);
-                header("Location: ../envase/listar");
+                header("Location: ".HOST."/envase/listar");
             }
         } catch (\Exception $exception) {
             echo '<script> alert("'.$exception->getMessage().'"); </script>';
@@ -92,7 +92,7 @@ class EnvaseControlador extends ControladorComun {
         $idEnvase = $parametros['id'];
         $archi = $this->MoverImagen();
         $this->datoEnvase->modificar($idEnvase, $parametros, $archi);    
-        header("Location: ../envase/listar");
+        header("Location: ".HOST."/envase/listar");
     }
 
     public function getListaEnvases()
@@ -108,6 +108,6 @@ class EnvaseControlador extends ControladorComun {
     public function baja($id)
     {   
         $this->datoEnvase->eliminar($id);
-        header("Location: ../../envase/listar");   
+        header("Location: ".HOST."/envase/listar");   
     }
 }

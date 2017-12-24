@@ -56,7 +56,7 @@ class SucursalControlador extends ControladorComun
                             'activo' => 1
                         ]
                     );
-                    header("Location: ../sucursal/listar");
+                    header("Location: ".HOST."/sucursal/listar");
                 }
 
             } else {
@@ -68,7 +68,7 @@ class SucursalControlador extends ControladorComun
                 
                 $this->datoSucursal->agregar($sucursal);
                 
-                header("Location: ../sucursal/listar");
+                header("Location: ".HOST."/sucursal/listar");
             }
 
         } catch (\Exception $e) {
@@ -93,13 +93,13 @@ class SucursalControlador extends ControladorComun
         $parametros['activo'] = 1;   
         $idSucursal = $parametros['id'];
         $this->datoSucursal->modificar($idSucursal, $parametros);    
-        header("Location: ../sucursal/listar");
+        header("Location: ".HOST."/sucursal/listar");
     }
 
     public function baja($id)
     {   
         $this->datoSucursal->eliminar($id);
-        header("Location: ../../sucursal/listar");   
+        header("Location: ".HOST."/sucursal/listar");   
     }
 
     public function mapa()

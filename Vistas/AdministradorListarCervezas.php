@@ -50,7 +50,11 @@
                     </th>
                     <th>
                         <div class="trans text-center">
-                            <img src="../<?php echo $cerveza->getImagen(); ?>" style="height:100px; width: 100px; ">
+                            <?php if (!empty($cerveza->getImagen())) : ?>
+                                <img src="<?php echo HOST;?>/<?php echo $cerveza->getImagen(); ?>" style="height:100px; width: 100px; ">
+                            <?php else : ?>
+                                <img src="<?php echo HOST;?>/images/No_Image_Available.png" style="height:100px; width: 100px; ">
+                            <?php endif; ?>
                         </div>
                     </th> 
                     <th>
