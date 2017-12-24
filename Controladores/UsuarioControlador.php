@@ -1,4 +1,6 @@
-<?php namespace Controladores;
+<?php
+
+namespace Controladores;
 
 use Config\Request;
 use Modelos;
@@ -34,7 +36,6 @@ class UsuarioControlador {
         require_once('Vistas/Administrador.php');
         require_once 'Vistas/AdministradorModificarUsuarios.php';  
     }
-
 
     public function darDeAlta($nombre, $apellido, $domicilio, $telefono, $email, $username, $contrasenia1, $contrasenia2)
     {
@@ -110,4 +111,3 @@ class UsuarioControlador {
         header("Location: ../Login/index");
     }
 }
-?>
