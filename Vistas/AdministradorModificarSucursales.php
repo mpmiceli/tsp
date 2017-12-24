@@ -5,7 +5,7 @@
     <div class="trans text-center">
         <h5 class="display-6">Modificar sucursal</h5><br>
     </div>
-    <form action="/TpBeer/Sucursal/guardarCambios" method="post">
+    <form action="../../sucursal/guardarCambios" method="post">
         <input type="hidden" name="id" value="<?php echo $sucursal->getId(); ?>" >
         <div class="form-group row">
             <label for="direccion" class="col-sm-4 col-form-label">Dirección</label>

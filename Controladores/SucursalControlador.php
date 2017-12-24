@@ -1,4 +1,6 @@
-<?php namespace Controladores;
+<?php
+
+namespace Controladores;
 
 use Config\Request;
 use Modelos;
@@ -6,26 +8,72 @@ use DAOs\DAOSucursal;
 use DAOs\BDSucursal;
 use Vistas;
 
-class SucursalControlador 
+class SucursalControlador extends ControladorComun
 {
 
     private $datoSucursal;
 
     public function __construct()
     {
-        //$this->datoSucursal = DAOSucursal::getInstance();
         $this->datoSucursal = BDSucursal::getInstance();
+    }
+
+    public function listar()
+    {
+        require_once('Vistas/Administrador.php');
+        require_once('Vistas/AdministradorListarSucursales.php');    
+    }
+
+    public function modificar($idSucursal)
+    {
+        $sucursal = $this->datoSucursal->buscar($idSucursal);
+        require_once('Vistas/Administrador.php');
+        require_once 'Vistas/AdministradorModificarSucursales.php';  
+    }
+
+    public function alta()
+    {
+        require_once 'Vistas/Administrador.php';
+        require_once 'Vistas/AdministradorAltaSucursal.php';  
     }
 
     public function darDeAlta($direccion, $numero)
     {
-        $sucursal = new Modelos\Sucursal();
+        try {
 
-        $sucursal->setDireccion($direccion);
-        $sucursal->setNumero($numero);
-        
-        $this->datoSucursal->agregar($sucursal);
-        header("Location: /TpBeer/administrador/altaSucursal");
+            $sucursal = $this->datoSucursal->buscarPorDireccionCompleta($direccion, $numero);
+
+            if ($sucursal) {
+
+                if ($sucursal->getActivo() == 1) {
+                    throw new \Exception('Esa sucursal ya existe'); 
+                } else {
+                    $this->datoSucursal->modificar(
+                        $sucursal->getId(),
+                        [
+                            'direccion' => $direccion,
+                            'numero' => $numero,
+                            'activo' => 1
+                        ]
+                    );
+                    header("Location: ../sucursal/listar");
+                }
+
+            } else {
+
+                $sucursal = new Modelos\Sucursal();
+
+                $sucursal->setDireccion($direccion);
+                $sucursal->setNumero($numero);
+                
+                $this->datoSucursal->agregar($sucursal);
+                
+                header("Location: ../sucursal/listar");
+            }
+
+        } catch (\Exception $e) {
+            $this->mostrarError($exception);
+        }
     }
 
     public function getListaSucursales()
@@ -41,16 +89,17 @@ class SucursalControlador
     public function guardarCambios($idSucursal, $parametros)
     {
         $request = new Request();
-        $parametros = $request->getParametros();   
+        $parametros = $request->getParametros();
+        $parametros['activo'] = 1;   
         $idSucursal = $parametros['id'];
         $this->datoSucursal->modificar($idSucursal, $parametros);    
-        header("Location: /TpBeer/administrador/listarSucursales");
+        header("Location: ../sucursal/listar");
     }
 
     public function baja($id)
     {   
         $this->datoSucursal->eliminar($id);
-        header("Location: /TpBeer/administrador/listarSucursales");   
+        header("Location: ../../sucursal/listar");   
     }
 
     public function mapa()

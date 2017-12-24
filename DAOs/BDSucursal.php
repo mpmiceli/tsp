@@ -93,7 +93,11 @@ class BDSucursal extends Singleton
     public function modificar($id, $parametros){
         $query = "
             UPDATE sucursales
-            SET direccion = :direccion, numero = :numero
+            SET
+                direccion = :direccion,
+                numero = :numero,
+                activo = :activo
+
             WHERE id = :id;";
 
         $connection = new Connection();
@@ -102,11 +106,48 @@ class BDSucursal extends Singleton
 
         $direccion = $parametros['direccion'];
         $numero = $parametros['numero'];
+        $activo = $parametros['activo'];
 
         $command->bindParam(':id', $id);
         $command->bindParam(':direccion', $direccion);
         $command->bindParam(':numero', $numero);
+        $command->bindParam(':activo', $activo);
         
         $command->execute();
+    }
+
+    public function buscarPorDireccionCompleta($direccion, $numero) {
+        
+        $query = "
+            SELECT *
+            FROM sucursales
+            WHERE direccion = :direccion AND numero = :numero;";
+
+        $connection = new Connection();
+        $pdo = $connection->connect();
+        $command = $pdo->prepare($query);
+
+        $command->bindParam(':direccion', $direccion);
+        $command->bindParam(':numero', $numero);
+
+        $command->execute();
+
+        $row = $command->fetch();
+
+        return $this->cargarModelo($row);           
+    }
+
+    protected function cargarModelo($row) {
+        
+        if ($row) {
+            $sucursal = new Modelos\Sucursal();
+            $sucursal->setId($row['id']);
+            $sucursal->setDireccion($row['direccion']);
+            $sucursal->setNumero($row['numero']);
+            $sucursal->setActivo($row['activo']);
+            return $sucursal;
+        }
+        
+        return null;   
     }
 }

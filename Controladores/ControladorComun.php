@@ -31,4 +31,10 @@ class ControladorComun {
             return null;
         }
     }
+
+    protected function mostrarError(\Exception $exception)
+    {
+        echo '<script> alert("'.$exception->getMessage().'"); </script>';
+        require_once "Vistas/Administrador.php";
+    }
 }

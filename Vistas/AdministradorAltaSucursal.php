@@ -5,7 +5,7 @@
     <div class="trans text-center">
         <h5 class="display-6">Cargar sucursal</h5><br>
     </div>
-    <form action="/TpBeer/Sucursal/darDeAlta" method="post">
+    <form action="../sucursal/darDeAlta" method="post">
         <div class="form-group row">
             <label for="direccion" class="col-sm-4 col-form-label">Dirección</label>
             <div class="col-sm-8">

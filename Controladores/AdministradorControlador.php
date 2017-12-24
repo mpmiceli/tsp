@@ -60,26 +60,9 @@ class AdministradorControlador
 
     ///////////SUCURSALES////////////////
 
-    public function listarSucursales()
-    {
-        $datos = new Controladores\SucursalControlador();
-        require_once('Vistas/Administrador.php');
-        require_once('Vistas/AdministradorListarSucursales.php');    
-    }
+    
 
-    public function altaSucursal()
-    {
-        require_once 'Vistas/Administrador.php';
-        require_once 'Vistas/AdministradorAltaSucursal.php';  
-    }
-
-    public function modificarSucursal($idSucursal)
-    {
-        $datos = new Controladores\SucursalControlador();
-        $sucursal = $datos->buscarSucursal($idSucursal);
-        require_once('Vistas/Administrador.php');
-        require_once 'Vistas/AdministradorModificarSucursales.php';  
-    }
+    
 
     ///////////USUARIOS////////////////
 
