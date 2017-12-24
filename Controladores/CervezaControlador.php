@@ -51,9 +51,15 @@ class CervezaControlador extends ControladorComun
         require_once 'Vistas/AdministradorAltaCerveza.php';  
     }
 
-    public function darDeAlta($nombre, $descripcion, $precio, $envases)
+    public function darDeAlta($nombre, $descripcion, $precio, $envases = array())
     {
         try {
+
+            $this->validarCampoNoVacio('nombre', $nombre);
+            $this->validarNumeroValido('precio', $precio);
+            if (empty($envases)) {
+                throw new \Exception("Seleccione por lo menos un envase");
+            }
 
             $cerveza = $this->datoCerveza->buscarXnombre($nombre);
 

@@ -35,4 +35,18 @@ class ControladorComun {
         echo '<script> alert("'.$exception->getMessage().'"); </script>';
         require_once "Vistas/Administrador.php";
     }
+
+    protected function validarCampoNoVacio($nombre, $campo) {
+        $campo = trim($campo);
+        if (strlen($campo) == 0) {
+            throw new \Exception("El campo '".$nombre."' esta vacio");
+        }
+    }
+
+    protected function validarNumeroValido($nombre, $campo) {
+        $this->validarCampoNoVacio($nombre, $campo);
+        if (!is_numeric($campo)) {
+            throw new \Exception("El campo '".$nombre."' no es un numero valido");   
+        }
+    }
 }

@@ -21,7 +21,7 @@
   		<div class="form-group row">
 		    <label for="precio" class="col-sm-4 col-form-label">Precio</label>
 		    <div class="col-sm-8">
-      			<input class="form-control form-control-sm" type="number"  value="0" id="precio" name="precio"></input>
+      			<input class="form-control form-control-sm" type="number" step="0.01" value="0" id="precio" name="precio"></input>
     		</div>
   		</div>
   		<div class="form-group row">
