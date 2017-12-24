@@ -2,7 +2,7 @@
 	<div class="trans text-center">
 		<h5 class="display-6">Buscar Pedido Sucursal</h5><br>
 	</div>
-	<form action="/TpBeer/pedido/listarPedidosSucursales" method="post">
+	<form action="../pedido/listarPedidosSucursales" method="post">
   		<div class="form-group row">
   			<label for="precio" class="col-sm-4 col-form-label">Sucursales:</label>
   			<div class="col-sm-8">

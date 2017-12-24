@@ -8,6 +8,7 @@ use Controladores;
 use DAOs\BDCerveza;
 use DAOs\BDUsuario;
 use DAOs\BDEnvase;
+use DAOs\BDSucursal;
 use DAOs\BDLineaPedido;
 use DAOs\BDPedido;
 use DAOs\DAOLineaPedido;
@@ -15,31 +16,50 @@ use DAOs\DAOCerveza;
 use DAOs\DAOEnvase;
 use Vistas;
 
-class PedidoControlador {
+class PedidoControlador extends ControladorComun {
 
     private $datoPedido;
+    private $datoSucursal;
+    private $datoCerveza;
+    private $datoEnvase;
 
     public function __construct()
     {
         $this->datoPedido = BDPedido::getInstance();
+        $this->datoSucursal = BDSucursal::getInstance();
+        $this->datoCerveza = BDCerveza::getInstance();
+        $this->datoEnvase = BDEnvase::getInstance();
     }
 
-    public function agregarLinea($cerveza, $envase, $precio, $cantidad){
+    public function listar()
+    {
+        $sucursales = $this->datoSucursal->getLista();
+        require_once('Vistas/Administrador.php');
+        require_once 'Vistas/AdministradorPedido.php';
+    }
+
+    public function agregarLinea($idCerveza, $idEnvase, $cantidad){
         $pedido = $_SESSION['PEDIDO'];
+        
+        $cerveza = $this->datoCerveza->buscar($idCerveza);
+        $envase = $this->datoEnvase->buscar($idEnvase);
+        $precio = $cerveza->calcularPrecio($envase);
+
         $linea = new Modelos\LineaPedido();
-        $datosCerveza = new Controladores\CervezaControlador();
-        $datosEnvase = new Controladores\EnvaseControlador();
-        $linea->setCerveza($datosCerveza->buscarCerveza($cerveza));
-        $linea->setEnvase($datosEnvase->buscarEnvase($envase));
-        $linea->setPrecio($precio*$cantidad);
+        $linea->setCerveza($cerveza);
+        $linea->setEnvase($envase);
+        $linea->setPrecio($precio * $cantidad);
         $linea->setCantidad($cantidad);
+        
         $pedido->setLineaPedido($linea);
         $montoParcial = 0;
+        
         foreach ($pedido->getLineaPedido() as $lineaP) {
             $montoParcial = $montoParcial + $lineaP->getPrecio();
         }
+        
         $pedido->setMontoFinal($montoParcial);
-        header("Location: /TpBeer/cliente/listarCerveza");
+        header("Location: ../cliente/listarCerveza");
     }
 
     public function eliminarLinea($pos = 0){
@@ -57,41 +77,55 @@ class PedidoControlador {
             $montoParcial = $montoParcial + $lineaP->getPrecio();
         }
         $pedido->setMontoFinal($montoParcial);
-        header("Location: /TpBeer/cliente/mostrarCarrito");
+        header("Location: ../../cliente/mostrarCarrito");
     }
 
-    public function finalizarPedido($fecha_entrega, $tipo_entrega, $id_sucursal, $horario){
+    public function finalizarPedido($fecha_entrega, $tipo_entrega, $dato_entrega){
 
         $pedido = $_SESSION['PEDIDO'];
-        
-        if ($tipo_entrega == "1") {
-            
-            $cliente = $pedido->getUsuario();
-            $datosSucursales = new Controladores\SucursalControlador();
-            $sucursales = $datosSucursales->getListaSucursales();
-            $distancia = 200;
-            foreach ($sucursales as $sucursal) {
-                $temp = $this->getDistancia($sucursal->getDireccionCompleta(), $cliente->getDomicilio());
-                if($temp<$distancia){
-                    $pedido->setSucursal($sucursal->getId());
-                    $distancia = $temp;
-                }
+
+        try {
+
+            if (empty($pedido->getLineaPedido())) {
+                throw new \Exception("El carrito esta vacio");
             }
 
-        }else {
-            $pedido->setSucursal($id_sucursal);
+            // Domicilio
+            if ($tipo_entrega == "1") {
+                
+                $cliente = $pedido->getUsuario();
+                $datosSucursales = new Controladores\SucursalControlador();
+                $sucursales = $datosSucursales->getListaSucursales();
+                $distancia = 200;
+                foreach ($sucursales as $sucursal) {
+                    $temp = $this->getDistancia($sucursal->getDireccionCompleta(), $cliente->getDomicilio());
+                    if($temp<$distancia){
+                        $pedido->setSucursal($sucursal->getId());
+                        $distancia = $temp;
+                    }
+                }
+                $horario = $dato_entrega;
+                $pedido->setHorario($horario);
+
+            } else {
+                $id_sucursal = $dato_entrega;
+                $pedido->setSucursal($id_sucursal);
+            }
+
+            $pedido->setTipoEntrega($tipo_entrega);
+            $pedido->setFechaEntrega($fecha_entrega);
+            $pedido->setEstado(Modelos\Pedido::ESTADO_SOLICITADO);
+            
+            $this->datoPedido->agregar($pedido);
+
+            $this->vaciarCarrito();
+
+            header("Location: ../cliente/menu");
+        
+        } catch(\Exception $exception) {
+            echo '<script> alert("'.$exception->getMessage().'"); </script>';
+            require_once "Vistas/Cliente.php";
         }
-
-        $pedido->setTipoEntrega($tipo_entrega);
-        $pedido->setFechaEntrega($fecha_entrega);
-        $pedido->setEstado(Modelos\Pedido::ESTADO_SOLICITADO);
-        $pedido->setHorario($horario);
-
-        $this->datoPedido->agregar($pedido);
-
-        $this->vaciarCarrito();
-
-        header("Location: /TpBeer/cliente/menu"); 
     }
 
     public function listarPedidos(){
@@ -135,8 +169,13 @@ class PedidoControlador {
     }
 
     public function modificarEstadoSucursal($id, $id_sucursal, $estado = 0){
+        //$pepe = [$estado, $id];
+
+
+
         $this->datoPedido->modificarEstado($estado, $id);
-        header("Location: /TpBeer/pedido/listarPedidosSucursales/" . $id_sucursal); 
+        
+        header("Location: ../pedido/listar"); 
     }
 
     public function modificarEstadoFecha($id, $fecha, $estado = 0){

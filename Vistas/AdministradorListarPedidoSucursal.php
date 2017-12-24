@@ -33,7 +33,7 @@
 
         <br>
 
-        <form action="/TpBeer/pedido/modificarEstadoSucursal" method="post">
+        <form action="../pedido/modificarEstadoSucursal" method="post">
 
                     <input type="hidden" name="id" value="<?php echo $pedido->getId(); ?>" >
                     <input type="hidden" name="sucursal" value="<?php echo $sucursal->getId(); ?>" >

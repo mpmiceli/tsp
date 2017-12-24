@@ -5,63 +5,61 @@
             <thead>
             <tbody class="bg-dark" style="color: white">
                 <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Descripcion</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Envase</th>
-                    <th scope="col">
-                        <div class="trans text-center">
-                            Cantidad
-                        </div>
+                    <th scope="col" style="text-align:center;"></th>
+                    <th scope="col" style="text-align:left;">Descripcion</th>
+                    <th scope="col" style="text-align:center;">Precio x Litro</th>
+                    <th scope="col" style="text-align:center;">Precio x Presentacion</th>
+                    <th scope="col" style="text-align:center;">
+                        <div class="trans text-center">Cantidad</div>
                     </th>
-                    <th scope="col">
-                        <div class="trans text-center">
-                            Encargar
-                        </div>
-                    </th>
+                    <th scope="col" style="text-align:center;"></th>
                 </tr>
             </tbody>
             </thead>
             <thead>
             <tbody style="color: black;">
-                <?php foreach ($datos->getListaCervezas() as $cerveza){
-                    foreach ($cerveza->getEnvases() as $envase){?>
-                    <form action="/TpBeer/pedido/agregarLinea" method="post">
+                <?php
+                foreach ($datos->getListaCervezas() as $cerveza) : ?>
+                    <form action="../pedido/agregarLinea" method="post">
                     <input type="hidden" name="cerveza" value="<?php echo $cerveza->getId(); ?>" >
-                    <input type="hidden" name="envase" value="<?php echo $envase->getId(); ?>" >
-                    <input type="hidden" name="precio" value="<?php echo ($cerveza->getPrecio()*$envase->getFactor()); ?>" >
                     <tr class="table-active">
-                        <th>   
+                        <td>   
                             <div class="trans text-center">
-                                <?php echo $cerveza->getNombre(); ?><br>
                                 <img src="../<?php echo $cerveza->getImagen(); ?>" style="height:100px; width: 100px; ">
                             </div>
-                        </th> 
-                        <th>
+                        </td> 
+                        <td>
+                            <b><?php echo $cerveza->getNombre(); ?></b>
+                            <br>
                             <?php echo $cerveza->getDescripcion(); ?>
-                        </th> 
-                        <th>
-                            <?php echo ($cerveza->getPrecio()*$envase->getFactor()); ?>
-                        </th> 
-                        <th>
+                        </td>
+                        <td style="text-align:center;">
+                            $<?php echo $cerveza->getPrecio(); ?>
+                        </td> 
+                        <td>
                             <div class="trans text-center">
-                                <?php echo $envase->getDescripcion(); ?><br>
-                                <img src="../<?php echo $envase->getImagen(); ?>" style="height:100px; width: 100px; ">
+                                <select name="envase">
+                                <?php foreach ($cerveza->getEnvases() as $envase) : ?>
+                                    <option value="<?php echo $envase->getId(); ?>">
+                                        <?php echo $envase->getDescripcion(); ?> ($<?php echo $cerveza->calcularPrecio($envase); ?>)
+                                    </option>
+                                <?php endforeach; ?>
+                                </select>
                             </div>
-                        </th>
-                        <th>
+                        </td>
+                        <td>
                             <div class="trans text-center">
-                            <input type="number" name="cantidad" min="1" max="20" required>
+                                <input type="number" name="cantidad" min="1" max="20" required>
                             </div>
-                        </th>
-                        <th>
+                        </td>
+                        <td>
                             <div class="trans text-center">
-                                <button type="submit" class="btn btn-success" style="color:black;">Encargar</button>
+                                <button type="submit" class="btn btn-success" style="color:black;">Agregar</button>
                             </div>
-                        </th>
+                        </td>
                     </tr>
                     </form>
-                <?php }}; ?>
+                <?php endforeach; ?>
             </tbody>
             </thead>
         </table>

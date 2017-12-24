@@ -71,4 +71,8 @@ class Cerveza{
     public function getActivo(){
         return $this->activo;
     }
+
+    public function calcularPrecio($envase) {
+        return $this->getPrecio() * $envase->getFactor();
+    }
 }

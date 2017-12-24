@@ -47,12 +47,12 @@
     </ul>
     <ul class="navbar-nav">
       <li class="nav-item  float-right">
-        <a class="nav-link active" href="/TpBeer/administrador/listarPedidos">Pedidos<span class="sr-only">(current)</span></a>
+        <a class="nav-link active" href="../pedido/listar">Pedidos<span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <ul class="navbar-nav">
       <li class="nav-item  float-right">
-        <a class="nav-link active" href="/TpBeer/Usuario/LogOut">LogOut<span class="sr-only">(current)</span></a>
+        <a class="nav-link active" href="../usuario/logout">LogOut<span class="sr-only">(current)</span></a>
       </li>
     </ul>
   </div>
