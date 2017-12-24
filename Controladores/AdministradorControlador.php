@@ -35,35 +35,6 @@ class AdministradorControlador
 
     }
 
-    ///////////ENVASES////////////////
-
-    public function listarEnvases()
-    {
-        $datos = new Controladores\EnvaseControlador();
-        require_once('Vistas/Administrador.php');
-        require_once('Vistas/AdministradorListarEnvases.php');    
-    }
-
-    public function altaEnvase()
-    {
-        require_once 'Vistas/Administrador.php';
-        require_once 'Vistas/AdministradorAltaEnvase.php';  
-    }
-
-    public function modificarEnvase($idEnvase)
-    {
-        $datos = new Controladores\EnvaseControlador();
-        $envase = $datos->buscarEnvase($idEnvase);
-        require_once('Vistas/Administrador.php');
-        require_once 'Vistas/AdministradorModificarEnvases.php';  
-    }
-
-    ///////////SUCURSALES////////////////
-
-    
-
-    
-
     ///////////USUARIOS////////////////
 
     public function listarUsuarios()

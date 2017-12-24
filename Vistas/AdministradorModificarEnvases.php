@@ -5,7 +5,7 @@
     <div class="trans text-center">
         <h5 class="display-6">Modificar envase</h5><br>
     </div>
-    <form action="/TpBeer/Envase/guardarCambios" method="post" enctype="multipart/form-data">
+    <form action="../../envase/guardarCambios" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $envase->getId(); ?>" >
         <div class="form-group row">
             <label for="volumen" class="col-sm-4 col-form-label">Volumen</label>

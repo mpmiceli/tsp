@@ -7,7 +7,7 @@ use Modelos;
 use DAOs\BDEnvase;
 use Vistas;
 
-class EnvaseControlador {
+class EnvaseControlador extends ControladorComun {
 
     private $datoEnvase;
 
@@ -16,40 +16,22 @@ class EnvaseControlador {
         $this->datoEnvase = BDEnvase::getInstance();
     }
 
-    public function MoverImagen(){
-        $imageDirectory = 'images/';
+    public function listar()
+    {
+        require_once('Vistas/Administrador.php');
+        require_once('Vistas/AdministradorListarEnvases.php');    
+    }
 
-        if(!file_exists($imageDirectory)){
-
-            mkdir($imageDirectory);
-        }
-        //print_r($_FILES);
-        //exit;
-
-        if($_FILES and $_FILES['imagen']['size']>0){
-            
-            if((isset($_FILES['imagen'])) && ($_FILES['imagen']['name'] != '')){
-                
-                $file = $imageDirectory . basename($_FILES['imagen']['name']);
-                
-                if(!file_exists($file)){
-                    
-                    move_uploaded_file($_FILES["imagen"]["tmp_name"], $file);
-                }
-
-                return $file;
-            }
-        }else{
-            return null;
-        }
+    public function alta()
+    {
+        require_once 'Vistas/Administrador.php';
+        require_once 'Vistas/AdministradorAltaEnvase.php';  
     }
 
     public function darDeAlta($volumen, $factor, $descripcion)
     {
         try {            
             
-            $this->datoEnvase = BDEnvase::getInstance();   
-
             $envase = $this->datoEnvase->buscarPorVolumen($volumen);
             
             if ($envase) {
@@ -71,7 +53,7 @@ class EnvaseControlador {
                         $imagen
                     );
 
-                    header("Location: ../administrador/listarEnvases");
+                    header("Location: ../envase/listar");
                 }
 
             } else {
@@ -88,12 +70,29 @@ class EnvaseControlador {
                 }
 
                 $this->datoEnvase->agregar($envase);
-                header("Location: ../administrador/altaEnvase");
+                header("Location: ../envase/listar");
             }
         } catch (\Exception $exception) {
             echo '<script> alert("'.$exception->getMessage().'"); </script>';
             require_once "Vistas/Administrador.php";
         }
+    }
+
+    public function modificar($idEnvase)
+    {
+        $envase = $this->datoEnvase->buscar($idEnvase);
+        require_once('Vistas/Administrador.php');
+        require_once 'Vistas/AdministradorModificarEnvases.php';  
+    }
+
+    public function guardarCambios($idEnvase, $parametros)
+    {
+        $request = new Request();
+        $parametros = $request->getParametros();   
+        $idEnvase = $parametros['id'];
+        $archi = $this->MoverImagen();
+        $this->datoEnvase->modificar($idEnvase, $parametros, $archi);    
+        header("Location: ../envase/listar");
     }
 
     public function getListaEnvases()
@@ -106,20 +105,9 @@ class EnvaseControlador {
         return $this->datoEnvase->buscar($idEnvase);
     }
 
-    public function guardarCambios($idEnvase, $parametros)
-    {
-        $request = new Request();
-        $parametros = $request->getParametros();   
-        $idEnvase = $parametros['id'];
-        $archi = $this->MoverImagen();
-        $this->datoEnvase->modificar($idEnvase, $parametros, $archi);    
-        header("Location: ./administrador/listarEnvases");
-    }
-
     public function baja($id)
     {   
         $this->datoEnvase->eliminar($id);
-        header("Location: ../../administrador/listarEnvases");   
+        header("Location: ../../envase/listar");   
     }
 }
-?>

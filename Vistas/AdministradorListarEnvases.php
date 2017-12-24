@@ -25,7 +25,7 @@
             </thead>
             <thead>
             <tbody style="color: black;">
-                <?php foreach ($datos->getListaEnvases() as $envase) : ?>
+                <?php foreach ($this->getListaEnvases() as $envase) : ?>
                     <tr class="table-active">
                         <th>
                             <?php echo $envase->getId(); ?>
@@ -46,12 +46,12 @@
                         </th> 
                         <th>
                             <div class="trans text-center">
-                                <a class="btn btn-warning btn-sm" href="modificarEnvase/<?php echo $envase->getId(); ?>">Modificar</a>
+                                <a class="btn btn-warning btn-sm" href="../envase/modificar/<?php echo $envase->getId(); ?>">Modificar</a>
                             </div>
                         </th>
                         <th>
                             <div class="trans text-center">
-                                <a class="btn btn-danger btn-sm" href="../Envase/baja/<?php echo $envase->getId(); ?>">Eliminar</a>
+                                <a class="btn btn-danger btn-sm" href="../envase/baja/<?php echo $envase->getId(); ?>">Eliminar</a>
                             </div>
                         </th>
                     </tr>
