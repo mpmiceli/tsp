@@ -6,7 +6,7 @@
     <br><br>
     <center><label><h2>Pedido <?php echo $i; ?> - Monto: $<?php echo $pedido->getMontoFinal() ?> - Cliente: <?php echo $pedido->getUsuario()->getUsername() ?></h2></label></center>
     <div class="trans text-center">
-        <a class="btn btn-danger btn-sm align-center" href="/TpBeer/pedido/eliminarPedido/<?php echo $pedido->getId(); ?>">Eliminar</a>
+        <a class="btn btn-danger btn-sm align-center" href="<?php echo HOST; ?>/pedido/eliminarPedido/<?php echo $pedido->getId(); ?>">Eliminar</a>
     </div><br>
     <div class="container">
     <table class="table table-sm"><tr><th>

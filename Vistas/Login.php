@@ -6,7 +6,7 @@
 <body class="bg-img-log">
 <nav class="navbar navbar-dark bg-dark">
       
-	<form action="./Login/procesarLogin" method="post" class="form-inline" >
+	<form action="<?php echo HOST; ?>/login/procesarLogin" method="post" class="form-inline" >
 		<label for="usuario" style="margin-right: 10px; margin-left: 10px"; >Usuario</label>
 		<input type="text" id="usuario" name="usuario" class="form-control form-control-sm" required autofocus>
 		
@@ -25,31 +25,27 @@
 <br>
 
 
-<br><center>
-<font face="times, serif" size="1">
-<div class="conteiner bg-white col-md-10"  style="opacity: 0.8; margin-top: 50px; color: black; ">
-<h1 style="font-family: 'Bree Serif', serif; color: black; ">Schwein
-<br>
-Autentica tradicion cervecera
-<br>
-</h1>
-<br>
-</font>
-
-
+	<br><center>
+	<font face="times, serif" size="1">
+	<div class="conteiner bg-white col-md-10"  style="opacity: 0.8; margin-top: 50px; color: black; ">
+	<h1 style="font-family: 'Bree Serif', serif; color: black; ">Schwein
+	<br>
+	Autentica tradicion cervecera
+	<br>
+	</h1>
+	<br>
+	</font>
 
 	<h3 class="form-signin-heading text-center" style="font-family: 'Bree Serif', serif; color: black; ">Agua + Malta + Lupulo + Levadura</h3><br>
 	<p>
 
-“La cerveza forma parte de nuestras vidas. Siendo una de las bebidas más populares y consumidas en el mundo, en Cervecería Schwein buscamos la perfección para brindar una Auténtica Cerveza Artesanal. Contando con cervezas claras, oscuras, de trigo, de alta o baja fermentación, hemos seducido los paladares más exigentes. Quienes confían en nosotros, ven proyección, crecimiento sostenido en el tiempo y resultados efectivos.”
-ETIENNE LEROUX
+		“La cerveza forma parte de nuestras vidas. Siendo una de las bebidas más populares y consumidas en el mundo, en Cervecería Schwein buscamos la perfección para brindar una Auténtica Cerveza Artesanal. Contando con cervezas claras, oscuras, de trigo, de alta o baja fermentación, hemos seducido los paladares más exigentes. Quienes confían en nosotros, ven proyección, crecimiento sostenido en el tiempo y resultados efectivos.”
+		ETIENNE LEROUX
 
-Director Schwein
- </p>
-	<form action="../Usuario/darDeAlta" method="post">
-		<br><h3><a href="#" id="btn-sucursales" style="color: black;">Veni a visitarnos!</a></h3>
-		
-	</form>
+		Director Schwein
+	</p>
+ 	<br>
+ 	<h3><a href="#" id="btn-sucursales" style="color: black;">Veni a visitarnos!</a></h3>
 </div>
 </center>
 
@@ -67,7 +63,7 @@ Director Schwein
 <center>
 <div class="conteiner bg-dark col-md-8" id="registro" style="opacity: 0.8; margin-top: 70px;">
 	<h3 class="form-signin-heading text-center">Registro</h3><br>
-	<form action="../Usuario/darDeAlta" method="post">
+	<form action="<?php echo HOST; ?>/usuario/darDeAlta" method="post">
 		<div class="form-row">
 			<div class="form-group col-md-6">
 		        <label for="nombre">Nombre</label>

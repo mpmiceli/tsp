@@ -2,7 +2,7 @@
 	<div class="trans text-center">
 		<h5 class="display-6">Buscar litros entre Fechas</h5><br>
 	</div>
-	<form action="/TpBeer/administrador/cervezasXlitro" method="post">
+	<form action="<?php echo HOST; ?>/administrador/cervezasXlitro" method="post">
   		<label for="fecha_entrega"><strong><h5>Desde:   </h5></strong></label>
         <input type="text" id="datepicker" name="fecha" />
         <br><br>

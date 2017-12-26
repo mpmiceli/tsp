@@ -7,7 +7,7 @@
     <br><br>
     <center><label><h2>Pedido <?php echo $i; ?> - Monto: $<?php echo $pedido->getMontoFinal() ?></h2></label></center>
     <div class="trans text-center">
-        <a class="btn btn-danger btn-sm align-center" href="/TpBeer/pedido/eliminarPedido/<?php echo $pedido->getId(); ?>">Eliminar</a>
+        <a class="btn btn-danger btn-sm align-center" href="<?php echo HOST; ?>/pedido/eliminarPedido/<?php echo $pedido->getId(); ?>">Eliminar</a>
     </div><br>
     <div class="container">
     <table class="table table-sm"><tr><th>
@@ -34,7 +34,7 @@
 
         <br>
 
-        <form action="/TpBeer/pedido/modificarEstadoUsuario" method="post">
+        <form action="<?php echo HOST; ?>/pedido/modificarEstadoUsuario" method="post">
 
                     <input type="hidden" name="id" value="<?php echo $pedido->getId(); ?>" >
                     <input type="hidden" name="usuario" value="<?php echo $cliente->getUsername(); ?>" >

@@ -22,7 +22,7 @@
 	<div class="trans text-center">
 		<h5 class="display-6">Buscar Pedido Usuario</h5><br>
 	</div>
-	<form action="/TpBeer/pedido/listarPedidosUsuario" method="post">
+	<form action="<?php echo HOST; ?>/pedido/listarPedidosUsuario" method="post">
   		<div class="form-group row">
 			<label for="cliente" class="col-sm-4 col-form-label">Nombre Usuario:</label>
 			<div class="col-sm-8">
@@ -38,7 +38,7 @@
 	<div class="trans text-center">
 		<h5 class="display-6">Buscar Pedido Fecha</h5><br>
 	</div>
-	<form action="/TpBeer/pedido/listarPedidosFechas" method="post">
+	<form action="<?php echo HOST; ?>/pedido/listarPedidosFechas" method="post">
   		<label for="fecha_entrega"><strong><h5>Fecha de entrega: </h5></strong></label>
         <input type="text" id="datepicker" name="fecha_entrega" /> 
 		<div class="trans text-center">

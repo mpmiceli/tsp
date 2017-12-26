@@ -2,7 +2,7 @@
 <?php foreach ($sucursales as $sucursal) : ?>
     <div style="padding: 10px; float: left; margin: 10px;" >
     <iframe
-            width="550"
+            width="500"
             height="450"
             frameborder="0"
             style="border:0"

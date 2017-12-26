@@ -63,13 +63,16 @@ class UsuarioControlador {
 
             $this->datoUsuario->agregar($usuario);
 
-            if ($usuario != null && $usuario->getAdmin() == 1) {
-                header("Location: ".HOST."/administrador/altaUsuario");
+            if ($usuarioLogueado != null && $usuarioLogueado->getAdmin() == 1) {
+                header("Location: ".HOST."/usuario/listar");
             } else {
                 header("Location: ".HOST."/login/index");
             }
 
         } catch (\Exception $exception) {
+
+            print_r($exception->getMessage()); exit;
+
             echo '<script> alert("'.$exception->getMessage().'"); </script>';
             if ($usuarioLogueado != null && $usuarioLogueado->getAdmin() == 1) {
                 require_once 'Vistas/Administrador.php';

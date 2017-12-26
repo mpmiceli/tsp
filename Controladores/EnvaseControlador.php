@@ -85,12 +85,18 @@ class EnvaseControlador extends ControladorComun {
         require_once 'Vistas/AdministradorModificarEnvases.php';  
     }
 
-    public function guardarCambios($idEnvase, $parametros)
+    public function guardarCambios($idEnvase, $volumen, $factor, $descripcion)
     {
         $request = new Request();
-        $parametros = $request->getParametros();   
-        $idEnvase = $parametros['id'];
         $archi = $this->MoverImagen();
+
+        $parametros = array(
+            'volumen' => $volumen,
+            'factor' => $factor, 
+            'descripcion' => $descripcion,
+            'activo' => 1
+        );
+
         $this->datoEnvase->modificar($idEnvase, $parametros, $archi);    
         header("Location: ".HOST."/envase/listar");
     }
