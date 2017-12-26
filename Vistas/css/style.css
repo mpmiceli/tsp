@@ -12,7 +12,9 @@ table, th, tr {
 	color: white;
 	background-image: url(../img/bg-login.jpg);
 	background-size: 100%;
+	float: right;
 }
+
 
 .admin-header{
 	color: white;
@@ -25,9 +27,13 @@ table, th, tr {
 	margin-top: 2%;
 	background-color: grey;
 	opacity: 0.7;
+	
 }
 
 .page-header{
 	color: black;
 	background-color: grey;
+	
 }
+
+

@@ -4,17 +4,61 @@
 ?>
 <body class="bg-img-log">
 <nav class="navbar navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Cerveceria</a>
-	        <form action="./Login/procesarLogin" method="post" class="form-inline">
-	        <label for="usuario" style="margin-right: 10px; margin-left: 10px">Usuario</label>
-	        <input type="text" id="usuario" name="usuario" class="form-control form-control-sm" required autofocus>
-	        <label for="contrasenia" style="margin-right: 10px; margin-left: 10px">Contraseña</label>
-	        <input type="password" id="contrasenia" name="contrasenia" class="form-control form-control-sm" required>
-	        <button class="btn btn-sm btn-black" type="submit" style="margin-left: 10px;">Ingresar</button>
-        </form>
+      
+	<form action="./Login/procesarLogin" method="post" class="form-inline" >
+		<label for="usuario" style="margin-right: 10px; margin-left: 10px; align:right"; >Usuario</label>
+		<input type="text" id="usuario" name="usuario" class="form-control form-control-sm; align:right" required autofocus>
+		
+		<label for="contrasenia" style="margin-right: 10px; margin-left: 10px; align:right">Contraseña</label>
+		<input type="password" id="contrasenia" name="contrasenia" class="form-control form-control-sm; align:right" required>
+		
+		<button class="btn btn-sm btn-black" type="submit" style="margin-left: 10px; align:right">Ingresar</button>
+	</form>
+        	<br><a href="#" id="btn-registro">Registrate aca!</a>
+       
 </nav>
+//////////////////////////////
+<br>
+//////////////////////
+<br>
+'
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+'<br>
+
+
+
+
 <center>
-<div class="conteiner bg-dark col-md-8" style="opacity: 0.8; margin-top: 40px;">
+<div class="conteiner bg-dark col-md-8" id="registro" style="opacity: 0.8; margin-top: 40px;">
 	<h3 class="form-signin-heading text-center">Registro</h3><br>
 	<form action="../Usuario/darDeAlta" method="post">
 		<div class="form-row">
@@ -40,11 +84,11 @@
 			</div>
 			<div class="form-group col-md-6">
 		        <label for="usuario">Usuario</label>
-		        <input type="text" id="usuario" name="usuario" class="form-control form-control-sm">
+		        <input type="text" name="usuario" class="form-control form-control-sm">
 			</div>
 			<div class="form-group col-md-6">
 		        <label for="contrasenia">Contraseña</label>
-		        <input type="password" id="contrasenia" name="contrasenia" class="form-control form-control-sm" required>
+		        <input type="password" name="contrasenia" class="form-control form-control-sm" required>
 			</div>
 			<div class="form-group col-md-6">
 		        <label for="Ccontrasenia">Confirmar contraseña</label>
@@ -56,11 +100,24 @@
 </div>
 </center>
 
+
 <br>
 <br>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		var registro = $('#registro').offset().top;
+
+		$('#btn-registro').on('click', function(e){
+			e.preventDefault();
+			$('html, body').animate({
+					scrollTop: registro 
+				},
+				500
+			);
+		});
+	});
+</script>
 
 <?php require_once 'MapaSucursales.php'; ?>
-
-<?php  
-	require_once 'footer.php';
-?>
+<?php require_once 'footer.php'; ?>
