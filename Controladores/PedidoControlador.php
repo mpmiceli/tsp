@@ -38,9 +38,21 @@ class PedidoControlador extends ControladorComun {
         require_once 'Vistas/AdministradorPedido.php';
     }
 
+    public static function getCarrito(){
+        if (!isset($_SESSION['PEDIDO'])) {
+            $pedido = new Modelos\Pedido();
+
+            $cliente = $_SESSION['USUARIO-LOGUEADO'];
+            $pedido->setUsuario($cliente);
+
+            $_SESSION['PEDIDO'] = $pedido;
+        }
+        return $_SESSION['PEDIDO'];
+    }
+
     public function agregarLinea($idCerveza, $idEnvase, $cantidad){
-        $pedido = $_SESSION['PEDIDO'];
-        
+        $pedido = self::getCarrito();
+
         $cerveza = $this->datoCerveza->buscar($idCerveza);
         $envase = $this->datoEnvase->buscar($idEnvase);
         $precio = $cerveza->calcularPrecio($envase);
@@ -59,6 +71,9 @@ class PedidoControlador extends ControladorComun {
         }
         
         $pedido->setMontoFinal($montoParcial);
+
+        $_SESSION['PEDIDO'] = $pedido;
+        
         header("Location: ".HOST."/cliente/listarCerveza");
     }
 

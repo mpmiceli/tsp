@@ -6,11 +6,7 @@ use Controladores;
 
 class ClienteControlador
 {
-    public function menu(){
-        $pedido = new Modelos\Pedido();
-        $cliente = $_SESSION['USUARIO-LOGUEADO'];
-        $pedido->setUsuario($cliente);
-        $_SESSION['PEDIDO'] = $pedido;
+    public function menu(){        
         require_once 'Vistas/Cliente.php';
     }
 
@@ -20,9 +16,13 @@ class ClienteControlador
         require_once('Vistas/ClienteListarCervezas.php');    
     }
 
+    public static function getCarrito(){
+        return $_SESSION['PEDIDO'];
+    }
+
     public function mostrarCarrito(){
-    	$pedido = $_SESSION['PEDIDO'];
-    	$lineas = $pedido->getLineaPedido();
+    	$pedido = self::getCarrito();
+        $lineas = $pedido->getLineaPedido();
         $cliente = $_SESSION['USUARIO-LOGUEADO'];
         $datosSucursal = new Controladores\SucursalControlador();
         $sucursales = $datosSucursal->getListaSucursales();
@@ -45,5 +45,3 @@ class ClienteControlador
         require_once('Vistas/ClienteListarSucursales.php');    
     }
 }
-
-?>
