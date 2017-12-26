@@ -7,37 +7,47 @@
 <nav class="navbar navbar-dark bg-dark">
       
 	<form action="./Login/procesarLogin" method="post" class="form-inline" >
-		<label for="usuario" style="margin-right: 10px; margin-left: 10px; align:right"; >Usuario</label>
-		<input type="text" id="usuario" name="usuario" class="form-control form-control-sm; align:right" required autofocus>
+		<label for="usuario" style="margin-right: 10px; margin-left: 10px"; >Usuario</label>
+		<input type="text" id="usuario" name="usuario" class="form-control form-control-sm" required autofocus>
 		
-		<label for="contrasenia" style="margin-right: 10px; margin-left: 10px; align:right">Contraseña</label>
-		<input type="password" id="contrasenia" name="contrasenia" class="form-control form-control-sm; align:right" required>
+		<label for="contrasenia" style="margin-right: 10px; margin-left: 10px">Contraseña</label>
+		<input type="password" id="contrasenia" name="contrasenia" class="form-control form-control-sm" required>
 		
-		<button class="btn btn-sm btn-black" type="submit" style="margin-left: 10px; align:right">Ingresar</button>
+		<button class="btn btn-sm btn-black" type="submit" style="margin-left: 10px">Ingresar</button>
+
+<a href="#" id="btn-registro" style=" font-size:5; margin-right: 10px; margin-left: 360px; color: #ffffff; "><h6>Todavia no tenes cuenta?</h6> Registrate</a>
 	</form>
     <br>
-    <a href="#" id="btn-registro" style="color: #ffffff; ">Registrate aca!</a>
+    
        
 </nav>
 
 <br>
-<font face="times, serif" size="1">
 
-<center><h1>Schwein
+
+<br><center>
+<font face="times, serif" size="1">
+<div class="conteiner bg-white col-md-10"  style="opacity: 0.8; margin-top: 50px; color: black; ">
+<h1 style="font-family: 'Bree Serif', serif; color: black; ">Schwein
 <br>
 Autentica tradicion cervecera
 <br>
-</h1></center>
+</h1>
 <br>
 </font>
 
-<center>
-<div class="conteiner bg-dark col-md-8"  style="opacity: 0.8; margin-top: 40px;">
-	<h3 class="form-signin-heading text-center" style="font-family: 'Bree Serif', serif;">Agua + Malta + Lupulo + Levadura</h3><br>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et tristique erat, sit amet congue leo. Ut egestas felis non commodo bibendum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed sagittis eros eu lectus placerat, vel consectetur lectus vestibulum. Suspendisse tortor est, interdum a eros ac, accumsan pulvinar tellus. Donec iaculis ligula id luctus volutpat. Morbi sapien turpis, egestas ac libero non, finibus pellentesque nisl. Donec aliquet urna nec lorem sagittis imperdiet. 
-		Nulla ut lorem nunc. Nunc maximus lobortis sem, non sollicitudin ligula. </p>
+
+
+	<h3 class="form-signin-heading text-center" style="font-family: 'Bree Serif', serif; color: black; ">Agua + Malta + Lupulo + Levadura</h3><br>
+	<p>
+
+“La cerveza forma parte de nuestras vidas. Siendo una de las bebidas más populares y consumidas en el mundo, en Cervecería Schwein buscamos la perfección para brindar una Auténtica Cerveza Artesanal. Contando con cervezas claras, oscuras, de trigo, de alta o baja fermentación, hemos seducido los paladares más exigentes. Quienes confían en nosotros, ven proyección, crecimiento sostenido en el tiempo y resultados efectivos.”
+ETIENNE LEROUX
+
+Director Schwein
+ </p>
 	<form action="../Usuario/darDeAlta" method="post">
-		<br><h3><a href="#" id="btn-sucursales" style="color:#ffffff;">Veni a visitarnos!</a></h3>
+		<br><h3><a href="#" id="btn-sucursales" style="color: black;">Veni a visitarnos!</a></h3>
 		
 	</form>
 </div>
@@ -55,7 +65,7 @@ Autentica tradicion cervecera
 
 
 <center>
-<div class="conteiner bg-dark col-md-8" id="registro" style="opacity: 0.8; margin-top: 40px;">
+<div class="conteiner bg-dark col-md-8" id="registro" style="opacity: 0.8; margin-top: 70px;">
 	<h3 class="form-signin-heading text-center">Registro</h3><br>
 	<form action="../Usuario/darDeAlta" method="post">
 		<div class="form-row">
@@ -100,18 +110,29 @@ Autentica tradicion cervecera
 
 <br>
 <br>
-
+<center>
 <section class="ubicacion" id="ubicacion">
-			<div class="contenedor">
-				<center><h1 class="titulo">Nuestras Sucursales</h1></center>
+			<div class="conteiner bg-white col-md-10"  style="opacity: 0.8; margin-top: 50px; color: black; ">
+				<center><h1 class="titulo" style="font-family: 'Bree Serif', serif; ">Nuestras Sucursales</h1></center>
 				
-		<center><div class="horarios">
+		<center><div class="horarios" style="font-family: 'Bree Serif', serif; ">
 					<center><h2>Horarios</h2></center>
-					<p class="entre-semana">Lunes a Jueves<br> 11:00am - 22:00pm</p>
-					<p class="finde-semana">Viernes Sabados y Domingos<br> 12:00pm - 02:00am</p>
+					<p class="entre-semana"><h3>Lunes a Jueves<br> 11:00am - 22:00pm</h3></p>
+					<p class="finde-semana"><h3>Viernes Sabados y Domingos<br> 12:00pm - 02:00am</h3></p>
 				</div>
 			</div>
 		</section>
+</center>
+
+
+<section class="redes-sociales">
+				<div class="contenedor">
+					<a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+					<a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+					<a href="#" class="you-tube"><i class="fa fa-youtube-play"></i></a>
+					<a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+				</div>
+</section>
 
 <script type="text/javascript">
 	$(document).ready(function() {
