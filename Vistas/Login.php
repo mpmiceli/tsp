@@ -55,6 +55,12 @@
 	</form>
 </div>
 </center>
+
+<br>
+<br>
+
+<?php require_once 'MapaSucursales.php'; ?>
+
 <?php  
 	require_once 'footer.php';
 ?>

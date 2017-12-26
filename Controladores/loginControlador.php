@@ -3,13 +3,21 @@
 namespace Controladores; 
 
 use DAOs\BDUsuario;
+use DAOs\BDSucursal;
 
 class LoginControlador extends ControladorComun {
+
+	public function __construct() {
+		$this->datoSucursal = BDSucursal::getInstance();
+	}
 
 	public function index(){
 		$usuario = $this->getUsuarioLogueado();
 		if (is_null($usuario)) {
-			require_once "Vistas/Login.php";	
+
+			$sucursales = $this->datoSucursal->getLista();
+			require_once "Vistas/Login.php";
+			
 		} else {
 			if ($usuario->getAdmin() == 1) {
 				header("Location: ".HOST."/administrador/menu");
