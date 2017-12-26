@@ -14,7 +14,6 @@ $router = new Router();
 
 session_start();
 
-
 if (
     ($request->getControlador() != 'Login' && $request->getMetodo() != 'index')
     && ($request->getControlador() != 'Usuario' && $request->getMetodo() != 'darDeAlta')

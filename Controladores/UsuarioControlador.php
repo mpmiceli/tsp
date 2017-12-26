@@ -70,9 +70,6 @@ class UsuarioControlador {
             }
 
         } catch (\Exception $exception) {
-
-            print_r($exception->getMessage()); exit;
-
             echo '<script> alert("'.$exception->getMessage().'"); </script>';
             if ($usuarioLogueado != null && $usuarioLogueado->getAdmin() == 1) {
                 require_once 'Vistas/Administrador.php';
