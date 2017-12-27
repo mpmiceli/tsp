@@ -23,7 +23,7 @@
             Solicitado
         <?php }; ?>
         <?php if ($pedido->getEstado() == 1) { ?>
-            Precesado
+            Procesado
         <?php }; ?>
         <?php if ($pedido->getEstado() == 2) { ?>
             Enviado

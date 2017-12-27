@@ -1,6 +1,6 @@
 <center>
 <?php foreach ($sucursales as $sucursal) : ?>
-    <div style="padding: 10px; float: left; margin: 10px;" >
+    <div style="padding: 20px; float: left; margin: 65px;" >
     <iframe
             width="500"
             height="450"

@@ -123,7 +123,7 @@ class PedidoControlador extends ControladorComun {
 
             $this->vaciarCarrito();
 
-            header("Location: ".HOST."/cliente/menu");
+            header("Location: ".HOST."/cliente/listarPedidos");
         
         } catch(\Exception $exception) {
             echo '<script> alert("'.$exception->getMessage().'"); </script>';
@@ -183,7 +183,7 @@ class PedidoControlador extends ControladorComun {
 
     public function eliminarPedido($id){
         $this->datoPedido->eliminar($id);
-        header("Location: ".HOST."/administrador/listarPedidos"); 
+        header("Location: ".HOST."/pedido/listar"); 
     }
 
     protected function vaciarCarrito(){
