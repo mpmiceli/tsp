@@ -206,17 +206,21 @@ class PedidoControlador extends ControladorComun {
         $outputTo = json_decode($geocodeTo);
         
         //Get latitude and longitude from geo data
-        $latitudeFrom = $outputFrom->results[0]->geometry->location->lat;
-        $longitudeFrom = $outputFrom->results[0]->geometry->location->lng;
-        $latitudeTo = $outputTo->results[0]->geometry->location->lat;
-        $longitudeTo = $outputTo->results[0]->geometry->location->lng;
+        if (isset($outputFrom->results[0]) && isset($outputTo->results[0])) {
+            $latitudeFrom = $outputFrom->results[0]->geometry->location->lat;
+            $longitudeFrom = $outputFrom->results[0]->geometry->location->lng;
+            $latitudeTo = $outputTo->results[0]->geometry->location->lat;
+            $longitudeTo = $outputTo->results[0]->geometry->location->lng;
+            
+            //Calculate distance from latitude and longitude
+            $theta = $longitudeFrom - $longitudeTo;
+            $dist = sin(deg2rad($latitudeFrom)) * sin(deg2rad($latitudeTo)) +  cos(deg2rad($latitudeFrom)) * cos(deg2rad($latitudeTo)) * cos(deg2rad($theta));
+            $dist = acos($dist);
+            $dist = rad2deg($dist);
+            $miles = $dist * 60 * 1.1515;
+            return ($miles * 1.609344);
+        }
         
-        //Calculate distance from latitude and longitude
-        $theta = $longitudeFrom - $longitudeTo;
-        $dist = sin(deg2rad($latitudeFrom)) * sin(deg2rad($latitudeTo)) +  cos(deg2rad($latitudeFrom)) * cos(deg2rad($latitudeTo)) * cos(deg2rad($theta));
-        $dist = acos($dist);
-        $dist = rad2deg($dist);
-        $miles = $dist * 60 * 1.1515;
-        return ($miles * 1.609344);
+        return 10000;
     }
 }

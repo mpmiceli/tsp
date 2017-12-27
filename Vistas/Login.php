@@ -67,27 +67,27 @@
 		<div class="form-row">
 			<div class="form-group col-md-6">
 		        <label for="nombre">Nombre</label>
-		        <input type="text" id="nombre" name="nombre" class="form-control form-control-sm">
+		        <input type="text" id="nombre" name="nombre" class="form-control form-control-sm" required>
 			</div>
 			<div class="form-group col-md-6">
 		        <label for="apellido">Apellido</label>
-		        <input type="text" id="apellido" name="apellido" class="form-control form-control-sm">
+		        <input type="text" id="apellido" name="apellido" class="form-control form-control-sm" required>
 			</div>
 			<div class="form-group col-md-6">
 			    <label for="domicilio">Domicilio</label>
-			    <input type="text" id="domicilio" name="domicilio" class="form-control form-control-sm">
+			    <input type="text" id="domicilio" name="domicilio" class="form-control form-control-sm" required>
 			</div>
 		    <div class="form-group col-md-6">
 		        <label for="telefono">Telefono</label>
-		        <input type="number" id="telefono" name="telefono" class="form-control form-control-sm">
+		        <input type="number" id="telefono" name="telefono" class="form-control form-control-sm" required>
 			</div>
 			<div class="form-group col-md-6">
 		        <label for="email">Email</label>
-		        <input type="email" id="email" name="email" class="form-control form-control-sm">
+		        <input type="email" id="email" name="email" class="form-control form-control-sm" required>
 			</div>
 			<div class="form-group col-md-6">
 		        <label for="usuario">Usuario</label>
-		        <input type="text" name="usuario" class="form-control form-control-sm">
+		        <input type="text" name="usuario" class="form-control form-control-sm" required>
 			</div>
 			<div class="form-group col-md-6">
 		        <label for="contrasenia">Contraseña</label>
