@@ -4,7 +4,7 @@ namespace Controladores;
 use Modelos;
 use Controladores;
 
-class ClienteControlador
+class ClienteControlador extends ControladorComun
 {
     public function menu(){        
         require_once 'Vistas/Cliente.php';
@@ -14,10 +14,6 @@ class ClienteControlador
         $datos = new Controladores\CervezaControlador();
         require_once('Vistas/Cliente.php');
         require_once('Vistas/ClienteListarCervezas.php');    
-    }
-
-    public static function getCarrito(){
-        return $_SESSION['PEDIDO'];
     }
 
     public function mostrarCarrito(){

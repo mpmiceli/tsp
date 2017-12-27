@@ -12,7 +12,9 @@ Autoload::start();
 $request = new Request();
 $router = new Router();
 
-session_start();
+if (empty(session_id())) {
+    session_start();    
+}
 
 if (
     ($request->getControlador() != 'Login' && $request->getMetodo() != 'index')

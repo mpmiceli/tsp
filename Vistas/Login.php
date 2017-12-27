@@ -45,7 +45,7 @@
 		Director Schwein
 	</p>
  	<br>
- 	<h3><a href="#" id="btn-sucursales" style="color: black;">Veni a visitarnos!</a></h3>
+ 	<h3><a href="#" id="btn-sucursales" style="color: black;">Visitanos!</a></h3>
 </div>
 </center>
 

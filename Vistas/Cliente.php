@@ -26,7 +26,7 @@
     </ul>
     <ul class="navbar-nav">
       <li class="nav-item  float-left">
-        <a class="nav-link active" href="<?php echo HOST; ?>/usuario/logout">LogOut<span class="sr-only">(current)</span></a>
+        <a class="nav-link active" href="<?php echo HOST; ?>/login/logout">LogOut<span class="sr-only">(current)</span></a>
       </li>
     </ul>
   </div>

@@ -104,10 +104,4 @@ class UsuarioControlador {
         $this->datoUsuario->eliminar($id);
         header("Location: ".HOST."/usuario/listar");    
     }
-
-    public function logOut(){
-        unset($_SESSION['USUARIO-LOGUEADO']);
-        unset($_SESSION['PEDIDO']);
-        header("Location: ".HOST);
-    }
 }

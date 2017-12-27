@@ -2,6 +2,8 @@
 
 namespace Controladores;
 
+use Modelos;
+
 class ControladorComun {
 
     public function MoverImagen(){
@@ -48,5 +50,17 @@ class ControladorComun {
         if (!is_numeric($campo)) {
             throw new \Exception("El campo '".$nombre."' no es un numero valido");   
         }
+    }
+
+    public static function getCarrito(){
+        if (!isset($_SESSION['PEDIDO'])) {
+            $pedido = new Modelos\Pedido();
+
+            $cliente = $_SESSION['USUARIO-LOGUEADO'];
+            $pedido->setUsuario($cliente);
+
+            $_SESSION['PEDIDO'] = $pedido;
+        }
+        return $_SESSION['PEDIDO'];
     }
 }

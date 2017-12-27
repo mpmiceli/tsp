@@ -38,18 +38,6 @@ class PedidoControlador extends ControladorComun {
         require_once 'Vistas/AdministradorPedido.php';
     }
 
-    public static function getCarrito(){
-        if (!isset($_SESSION['PEDIDO'])) {
-            $pedido = new Modelos\Pedido();
-
-            $cliente = $_SESSION['USUARIO-LOGUEADO'];
-            $pedido->setUsuario($cliente);
-
-            $_SESSION['PEDIDO'] = $pedido;
-        }
-        return $_SESSION['PEDIDO'];
-    }
-
     public function agregarLinea($idCerveza, $idEnvase, $cantidad){
         $pedido = self::getCarrito();
 
@@ -184,12 +172,7 @@ class PedidoControlador extends ControladorComun {
     }
 
     public function modificarEstadoSucursal($id, $id_sucursal, $estado = 0){
-        //$pepe = [$estado, $id];
-
-
-
         $this->datoPedido->modificarEstado($estado, $id);
-        
         header("Location: ".HOST."/pedido/listar"); 
     }
 
@@ -211,6 +194,7 @@ class PedidoControlador extends ControladorComun {
     }
 
     protected function getDistancia($addressFrom, $addressTo){
+
         //Change address format
         $formattedAddrFrom = str_replace(' ','+',$addressFrom);
         $formattedAddrTo = str_replace(' ','+',$addressTo);
@@ -235,6 +219,4 @@ class PedidoControlador extends ControladorComun {
         $miles = $dist * 60 * 1.1515;
         return ($miles * 1.609344);
     }
-
-
 }

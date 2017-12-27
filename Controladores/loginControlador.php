@@ -67,6 +67,13 @@ class LoginControlador extends ControladorComun {
     	}			
 	}
 
+	public function logout(){
+		if (!empty(session_id())) {
+		    session_destroy();    
+		}
+        header("Location: ".HOST);
+    }
+
 	protected function setUsuarioEnSession($usuario) {
 		$_SESSION['USUARIO-LOGUEADO'] = $usuario;
 	}
